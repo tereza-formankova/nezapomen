@@ -99,7 +99,7 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
  <div class="trust">
   <div><strong>Minimum údajů.</strong><br>Neptáme se na rok narození ani na adresu.</div>
   <div><strong>Nic neprodáváme.</strong><br>Údaje nikomu nepředáváme. Smazání na požádání.</div>
-  <div><strong>Za tím je člověk.</strong><br>Službu dělá Tereza, protože jí muž kupuje dárky na poslední chvíli. Napiš jí na <a href="mailto:ahoj@TVOJEDOMENA.cz">ahoj@TVOJEDOMENA.cz</a>.</div>
+  <div><strong>Za tím je člověk.</strong><br>Službu dělá Tereza, protože jí muž kupuje dárky na poslední chvíli. Napiš jí na <a href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a>.</div>
  </div>
 </section>
 <footer>© Nezapomeň · <a href="zasady.html">Ochrana osobních údajů</a></footer>
@@ -107,7 +107,7 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
 
 <script>
 // Vlož adresu webové aplikace z Google Apps Scriptu (viz apps-script.gs)
-const FORM_ENDPOINT = ""; 
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbz2MvWxieXPVW5lp9l-Ma3TuKn7ZJjSgjpT0al7nSvaUUcaCnb3oWTQL9iYGnDAAPhO/exec"; 
 const f = document.getElementById('f'), msg = document.getElementById('msg');
 const show = (t, c) => { msg.className = c; msg.textContent = t; };
 f.addEventListener('submit', async e => {
@@ -124,7 +124,7 @@ f.addEventListener('submit', async e => {
     // text/plain + no-cors: Apps Script nepodporuje předběžný dotaz (preflight). Odpověď nelze přečíst, úspěch poznáš v tabulce.
     await fetch(FORM_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)});
     f.reset(); show('Hotovo! Za chvíli ti dorazí uvítací e-mail. Podívej se i do složky Promo nebo Spam.', 'ok');
-  } catch { show('Něco se nepovedlo. Zkus to prosím znovu, nebo napiš na ahoj@TVOJEDOMENA.cz.', 'err'); }
+  } catch { show('Něco se nepovedlo. Zkus to prosím znovu, nebo napiš na tereza@nezapomen.cz.', 'err'); }
   btn.disabled = false;
 });
 </script>
