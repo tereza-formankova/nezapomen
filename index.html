@@ -18,7 +18,7 @@ a{color:var(--teal)}
 .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
 header{padding:18px 0}.logo{font-family:Fraunces,Georgia,serif;font-weight:800;font-size:1.3rem;text-decoration:none;color:var(--ink)}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:40px 0 70px}
-.lead{font-size:1.2rem;color:var(--mute);max-width:34em}
+.lead{.free-note{margin:12px 0 0;font-size:.9rem;color:var(--mute)}
 .btn{display:inline-block;background:var(--ribbon);color:#fff;border:0;border-radius:8px;padding:14px 26px;font:600 1rem Inter,sans-serif;cursor:pointer;text-decoration:none}
 .btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
 .mail{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 12px 40px rgba(28,34,51,.1);transform:rotate(1.2deg)}
@@ -29,6 +29,9 @@ section{padding:56px 0;border-top:1px solid var(--line)}
 .about img{width:150px;height:150px;border-radius:50%;object-fit:cover;background:#e9ecef}
 .about h2{margin-bottom:.4em}.about p{margin:0 0 .8em;font-size:1.05rem}.sign{font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:600;margin:0}
 .steps p{color:var(--mute);margin:0}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.step svg{display:block;width:100%;max-width:200px;height:auto;margin:0 auto 14px}
+.step h3{font-size:1.15rem;margin-bottom:.4em}
 form{max-width:640px;display:grid;gap:14px}
 label{font-weight:600;font-size:.95rem;display:grid;gap:5px}
 input,select{font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
@@ -53,23 +56,37 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
 
 <div class="hero">
  <div>
-  <h1>Nemáš čas?<br>Dárek vyberu já.<br>Ona bude šťastná.<br><span style="color:var(--ribbon)">A ty taky.</span></h1>
-  <p class="lead">NEZAPOMEŇ ti tři týdny před důležitým datem připomene, že se blíží, a pošle ti 3 tipy na dárky na e-mail. Ty si jen vybereš. Zdarma pro prvních 1 000 členů.</p>
+  <h1>Nemáš čas?<br>Dárek vyberu já.<br></h1>
+  <p class="lead">Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy na dárky podle toho, co má ráda Ty si jen vybereš.</p>
   <a class="btn" href="#registrace">Chci připomínky zdarma</a>
+  <p class="free-note">Zdarma pro prvních 1 000 členů.</p>
  </div>
  <div class="mail" aria-label="Ukázka e-mailu">
   <small>Od: Nezapomeň · Předmět:</small><br><strong>Anežka: narozeniny za 21 dní + 3 tipy</strong>
-  <ol><li>Rodinný víkend ve wellness hotelu.</li><li>Lístky na koncert nebo divadlo, které má ráda.</li><li>Kurz vaření nebo degustace vína pro dva.</li></ol>
+  <ol><li>Víkend pro dva ve wellness hotelu.</li><li>Lístky na koncert nebo divadlo, které má ráda.</li><li>Kytice a její oblíbená kniha.</li></ol>
   <span class="pill">Koupím sám</span><span class="pill">Zařiď to za mě</span>
  </div>
 </div>
 
 <section>
- <h2>Jak to funguje</h2>
+<h2>Jak to funguje</h2>
+ <p class="lead" style="margin-bottom:28px">Tři jednoduché kroky. Žádná práce navíc.</p>
  <div class="steps">
-  <div><h3>1. Zadáš jména a data</h3><p>Stačí e-mail, jméno, vztah, den a měsíc a pár zájmů dané osoby.</p></div>
-  <div><h3>2. Dostaneš připomínku</h3><p>Tři týdny předem, aby zbyl čas na objednání i doručení.</p></div>
-  <div><h3>3. Vybereš z tipů</h3><p>Tři nápady, jedno kliknutí. Chceš to mít vyřízené? Klikni na „Zařiď to za mě“.</p></div>
+  <div class="step">
+   <svg viewBox="0 0 160 110" aria-hidden="true"><rect x="38" y="16" width="84" height="80" rx="10" fill="#fff" stroke="#1c2233" stroke-width="3"/><path d="M38 38V26a10 10 0 0 1 10-10h64a10 10 0 0 1 10 10v12z" fill="#0f6b6b"/><line x1="58" y1="9" x2="58" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><line x1="102" y1="9" x2="102" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><g fill="#c9ced8"><circle cx="54" cy="52" r="3"/><circle cx="72" cy="52" r="3"/><circle cx="90" cy="52" r="3"/><circle cx="108" cy="52" r="3"/><circle cx="54" cy="68" r="3"/><circle cx="72" cy="68" r="3"/><circle cx="108" cy="68" r="3"/><circle cx="54" cy="84" r="3"/><circle cx="72" cy="84" r="3"/><circle cx="90" cy="84" r="3"/></g><circle cx="90" cy="68" r="10" fill="#c2255c"/><path d="M90 73.5l-4.6-4.4a2.9 2.9 0 0 1 4.6-3.3 2.9 2.9 0 0 1 4.6 3.3z" fill="#fff"/></svg>
+   <h3>1. Nastavíš důležité datum</h3>
+   <p>Zadáš, komu chceš udělat radost, kdy slaví a co má ráda.</p>
+  </div>
+  <div class="step">
+   <svg viewBox="0 0 160 110" aria-hidden="true"><rect x="26" y="34" width="104" height="62" rx="8" fill="#fff" stroke="#1c2233" stroke-width="3"/><path d="M28 38l50 34 50-34" fill="none" stroke="#1c2233" stroke-width="3" stroke-linejoin="round"/><circle cx="124" cy="32" r="18" fill="#c2255c"/><text x="124" y="33" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">21</text><text x="124" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="600" fill="#fff">dní</text></svg>
+   <h3>2. Připomenu ti ho včas</h3>
+   <p>Tři týdny předem dostaneš e-mail, abys měl čas dárek vybrat i objednat.</p>
+  </div>
+  <div class="step">
+   <svg viewBox="0 0 160 110" aria-hidden="true"><defs><g id="gf"><rect x="-11" y="-2" width="22" height="16" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><rect x="-13" y="-8" width="26" height="7" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><line x1="0" y1="-8" x2="0" y2="14" stroke="#c2255c" stroke-width="3"/><path d="M0-8C-8-18-14-8 0-8 14-8 8-18 0-8z" fill="none" stroke="#c2255c" stroke-width="2.5"/></g></defs><rect x="14" y="38" width="38" height="56" rx="8" fill="#fff" stroke="#c9ced8" stroke-width="2.5"/><rect x="108" y="38" width="38" height="56" rx="8" fill="#fff" stroke="#c9ced8" stroke-width="2.5"/><rect x="61" y="34" width="38" height="60" rx="8" fill="#e3f2f1" stroke="#0f6b6b" stroke-width="3"/><use href="#gf" x="33" y="66"/><use href="#gf" x="80" y="66"/><use href="#gf" x="127" y="66"/><circle cx="80" cy="34" r="11" fill="#0f6b6b"/><path d="M74.5 34l4 4 7-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+   <h3>3. Vybereš si dárek</h3>
+   <p>Dostaneš tři konkrétní tipy. Vybereš si ten pravý, nebo využiješ možnost zařídit dárek s pomocí služby.</p>
+  </div>
  </div>
 </section>
 
