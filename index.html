@@ -31,6 +31,12 @@ section{padding:56px 0;border-top:1px solid var(--line)}
 .about img{width:150px;height:150px;border-radius:50%;object-fit:cover;background:#e9ecef}
 .about h2{margin-bottom:.4em}.about p{margin:0 0 .8em;font-size:1.05rem}.sign{font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:600;margin:0}
 .steps p{color:var(--mute);margin:0}
+.safe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.safe-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.safe-item svg{display:block;width:40px;height:40px;margin-bottom:10px}
+.safe-item h3{font-size:1.1rem;margin-bottom:.35em}
+.safe-item p{margin:0;color:var(--mute);font-size:.97rem}
+@media(max-width:760px){.safe-grid{grid-template-columns:1fr}}
 .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
 .step svg{display:block;width:100%;max-width:200px;height:auto;margin:0 auto 14px}
 .step h3{font-size:1.15rem;margin-bottom:.4em}
@@ -141,8 +147,26 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
 
 <section>
  <div class="trust">
-  <div><strong>Nic navíc.</strong><br>Stačí jméno, den a měsíc. Víc k připomínce nepotřebuji.</div>
-  <div><strong>V dobrých rukou.</strong><br>Tvoje údaje používám jen k tomu, abych ti poslala připomínku a tipy.</div>
+<div class="safe">
+  <h2>Ty ji znáš. Já ti pomůžu s výběrem.</h2>
+  <p class="lead" style="margin-bottom:24px">Čím víc o ní napíšeš, tím trefnější tipy dostaneš. Stačí pár základních informací, zbytek je na tobě.</p>
+  <div class="safe-grid">
+   <div class="safe-item">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="10" x2="34" y2="10"/><line x1="6" y1="20" x2="34" y2="20"/><line x1="6" y1="30" x2="34" y2="30"/></g><g fill="#fff" stroke="#c2255c" stroke-width="2.5"><circle cx="24" cy="10" r="4"/><circle cx="14" cy="20" r="4"/><circle cx="26" cy="30" r="4"/></g></svg>
+    <h3>Vyplníš jen to, co chceš</h3>
+    <p>Zájmy, oblíbené činnosti, styl nebo věci, které nesnáší. Každý detail pomůže při výběru.</p>
+   </div>
+   <div class="safe-item">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 18v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"/><rect x="8" y="18" width="24" height="17" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><circle cx="20" cy="26" r="2.6" fill="#0f6b6b"/></svg>
+    <h3>Víš, k čemu údaje slouží</h3>
+    <p>Používám je jen k připomínkám a přípravě tipů na dárky. Víc najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p>
+   </div>
+   <div class="safe-item">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="30" height="22" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><path d="M6.5 11.5l13.5 11 13.5-11" fill="none" stroke="#0f6b6b" stroke-width="2.5" stroke-linejoin="round"/></svg>
+    <h3>E-maily máš pod kontrolou</h3>
+    <p>Odhlásit se můžeš kdykoli odpovědí STOP.</p>
+   </div>
+  </div>
  </div>
 </section>
 <section>
