@@ -51,6 +51,7 @@ legend{font-weight:600;padding:0 6px}
 .hint{color:var(--mute);font-size:.9rem;margin:2px 0 8px}
 .pick{max-height:170px;overflow-y:auto;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
 textarea{font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%;resize:vertical}
+[hidden]{display:none!important}
 .hp{position:absolute;left:-9999px}
 #msg{padding:14px;border-radius:8px;display:none}#msg.ok{display:block;background:#e4f4ee}#msg.err{display:block;background:#fde8ec}
 .trust{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;font-size:.95rem;color:var(--mute)}
@@ -184,6 +185,9 @@ const FORM_ENDPOINT = CFG.formEndpoint || "";
 const CONTACT = CFG.email || "";
 if (CONTACT) document.querySelectorAll(".mail-link").forEach(a => { a.href = "mailto:" + CONTACT; a.textContent = CONTACT; });
 const f = document.getElementById('f'), msg = document.getElementById('msg');
+const jina = document.getElementById('jina-wrap');
+const toggleJina = () => { const on = f.querySelector('[name=o1_typ]:checked').value === 'jiná příležitost'; jina.hidden = !on; jina.querySelector('input').required = on; if (!on) jina.querySelector('input').value = ''; };
+f.querySelectorAll('[name=o1_typ]').forEach(r => r.addEventListener('change', toggleJina));
 const show = (t, c) => { msg.className = c; msg.textContent = t; };
 f.addEventListener('submit', async e => {
   e.preventDefault();
