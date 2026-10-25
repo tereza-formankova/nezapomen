@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nezapomeň – připomínka narozenin a výročí s tipy na dárky</title>
-<meta name="description" content="Tři týdny předem ti pošleme připomínku a 3 tipy na dárek. Už žádné dárky na poslední chvíli. Zdarma pro prvních 1 000 členů.">
+<meta name="description" content="Tři týdny předem ti pošlu připomínku a 3 tipy na dárek. Zdarma pro prvních 1 000 členů.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🎁%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;600&display=swap">
 <style>
@@ -25,6 +25,9 @@ header{padding:18px 0}.logo{font-family:Fraunces,Georgia,serif;font-weight:800;f
 .mail small{color:var(--mute)}.mail ol{padding-left:20px;margin:12px 0}.mail .pill{display:inline-block;border:1px solid var(--ribbon);color:var(--ribbon);border-radius:99px;padding:4px 12px;font-size:.85rem;font-weight:600;margin-right:6px}
 section{padding:56px 0;border-top:1px solid var(--line)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.about{display:grid;grid-template-columns:150px 1fr;gap:32px;align-items:center;max-width:760px}
+.about img{width:150px;height:150px;border-radius:50%;object-fit:cover;background:#e9ecef}
+.about h2{margin-bottom:.4em}.about p{margin:0 0 .8em;font-size:1.05rem}.sign{font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:600;margin:0}
 .steps p{color:var(--mute);margin:0}
 form{max-width:640px;display:grid;gap:14px}
 label{font-weight:600;font-size:.95rem;display:grid;gap:5px}
@@ -34,26 +37,29 @@ legend{font-weight:600;padding:0 6px}
 .row{display:grid;grid-template-columns:1.2fr 1fr 70px 1fr;gap:10px}
 .check{display:flex;gap:10px;font-weight:400;font-size:.9rem;color:var(--mute);align-items:flex-start}.check input{width:auto;margin-top:5px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}.chips label{font-weight:400;display:flex;flex-direction:row;gap:6px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:6px 12px;background:#fff;cursor:pointer;font-size:.9rem}.chips input{width:auto}
+.hint{color:var(--mute);font-size:.9rem;margin:2px 0 8px}
+.pick{max-height:170px;overflow-y:auto;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+textarea{font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%;resize:vertical}
 .hp{position:absolute;left:-9999px}
 #msg{padding:14px;border-radius:8px;display:none}#msg.ok{display:block;background:#e4f4ee}#msg.err{display:block;background:#fde8ec}
-.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;font-size:.95rem;color:var(--mute)}
+.trust{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;font-size:.95rem;color:var(--mute)}
 footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
-@media(max-width:760px){.hero,.steps,.trust{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}.mail{transform:none}}
+@media(max-width:760px){.about{grid-template-columns:1fr}.hero,.steps,.trust{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}.mail{transform:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><a class="logo" href="#">Nezapomeň - připomínka narozenin a výročí s tipy na dárky</a></header>
+<header><a class="logo" href="#">Nezapomeň</a></header>
 
 <div class="hero">
  <div>
   <h1>Nemáš čas?<br>Dárek vyberu já.<br>Ona bude šťastná.<br><span style="color:var(--ribbon)">A ty taky.</span></h1>
-  <p class="lead">Tři týdny před narozeninami nebo výročím ti pošleme e-mail a 3 tipy, z čeho vybrat. Ty si jen vybereš. Zdarma pro prvních 1 000 členů.</p>
+  <p class="lead">Tři týdny před narozeninami nebo výročím ti pošlu e-mail s 3 tipy na dárek. Ty si jen vybereš. Zdarma pro prvních 1 000 členů.</p>
   <a class="btn" href="#registrace">Chci připomínky zdarma</a>
  </div>
  <div class="mail" aria-label="Ukázka e-mailu">
-  <small>Od: Nezapomeň · Předmět:</small><br><strong>Anežka: narozeniny za 21 dní + 3 tipy🎁</strong>
-  <ol><li>Rodinný víkend ve wellness hotelu.</li><li>Lístky na koncert nebo divadlo, které má ráda.</li><li>Kurz vaření nebo degustace vína pro dva.</li></ol>
+  <small>Od: Nezapomeň · Předmět:</small><br><strong>Anežka: narozeniny za 21 dní + 3 tipy</strong>
+  <ol><li>Rodinný víkend ve wellness hotelu</li><li>Ručně vyrobený šperk s monogramem</li><li>Večeře pro dva v oblíbené restauraci, kytice na stole</li></ol>
   <span class="pill">Koupím sám</span><span class="pill">Zařiď to za mě</span>
  </div>
 </div>
@@ -73,7 +79,7 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
  <form id="f" novalidate>
   <label>Tvůj e-mail<input type="email" name="email" required autocomplete="email"></label>
   <label>Jak ti máme říkat?<input name="jmeno" required autocomplete="given-name"></label>
-  <fieldset><legend>Pro koho hledáš dárky? (povinné)</legend>
+  <fieldset><legend>Komu chceš udělat radost?</legend>
    <div class="row">
     <label>Jméno<input name="o1_jmeno" required></label>
     <label>Vztah k tobě<select name="o1_vztah" required><option value="">Vyber</option>
@@ -84,9 +90,14 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
     <label>Měsíc<select name="o1_mesic" required><option value="">Vyber</option><option value="1">leden</option><option value="2">únor</option><option value="3">březen</option><option value="4">duben</option><option value="5">květen</option><option value="6">červen</option><option value="7">červenec</option><option value="8">srpen</option><option value="9">září</option><option value="10">říjen</option><option value="11">listopad</option><option value="12">prosinec</option></select></label>
    </div>
    <label>K čemu se datum vztahuje?<select name="o1_typ"><option>narozeniny</option><option>svátek</option><option>výročí svatby</option><option>výročí vztahu</option><option>výročí spolupráce</option><option>jiná příležitost</option></select></label>
-   <div><strong style="font-size:.95rem">Co tato osoba ráda? (vyber vše, co sedí)</strong><div class="chips" style="margin-top:8px"><label><input type="checkbox" name="o1_zajmy" value="Kultura">Kultura</label><label><input type="checkbox" name="o1_zajmy" value="Sport">Sport</label><label><input type="checkbox" name="o1_zajmy" value="Wellness a relax">Wellness a relax</label><label><input type="checkbox" name="o1_zajmy" value="Cestování">Cestování</label><label><input type="checkbox" name="o1_zajmy" value="Knihy">Knihy</label><label><input type="checkbox" name="o1_zajmy" value="Hudba">Hudba</label><label><input type="checkbox" name="o1_zajmy" value="Gastro a víno">Gastro a víno</label><label><input type="checkbox" name="o1_zajmy" value="Technika a gadgety">Technika a gadgety</label><label><input type="checkbox" name="o1_zajmy" value="Móda a šperky">Móda a šperky</label><label><input type="checkbox" name="o1_zajmy" value="Domov a design">Domov a design</label><label><input type="checkbox" name="o1_zajmy" value="Příroda a zahrada">Příroda a zahrada</label><label><input type="checkbox" name="o1_zajmy" value="Auto-moto">Auto-moto</label><label><input type="checkbox" name="o1_zajmy" value="Hry a zábava">Hry a zábava</label><label><input type="checkbox" name="o1_zajmy" value="Umění">Umění</label><label><input type="checkbox" name="o1_zajmy" value="Péče o sebe">Péče o sebe</label><label><input type="checkbox" name="o1_zajmy" value="Rodina a děti">Rodina a děti</label></div></div>
+   <label>Kolik let bude nebo kolikáté je výročí? (nepovinné)<input name="o1_vek" maxlength="60" placeholder="např. 40 let, 10. výročí svatby"></label>
+   <div><strong style="font-size:.95rem">Co by udělalo radost?</strong>
+    <div class="hint">Zaškrtni, co tě napadne. Čím víc napovíš, tím trefnější tipy dostaneš.</div>
+    <div class="pick" tabindex="0" aria-label="Seznam zájmů, posuň a vyber"><div class="chips"><label><input type="checkbox" name="o1_zajmy" value="Cestování">Cestování</label><label><input type="checkbox" name="o1_zajmy" value="Wellness a relax">Wellness a relax</label><label><input type="checkbox" name="o1_zajmy" value="Kultura">Kultura</label><label><input type="checkbox" name="o1_zajmy" value="Divadlo a koncerty">Divadlo a koncerty</label><label><input type="checkbox" name="o1_zajmy" value="Film a seriály">Film a seriály</label><label><input type="checkbox" name="o1_zajmy" value="Knihy">Knihy</label><label><input type="checkbox" name="o1_zajmy" value="Hudba">Hudba</label><label><input type="checkbox" name="o1_zajmy" value="Umění">Umění</label><label><input type="checkbox" name="o1_zajmy" value="Sport">Sport</label><label><input type="checkbox" name="o1_zajmy" value="Outdoor a dobrodružství">Outdoor a dobrodružství</label><label><input type="checkbox" name="o1_zajmy" value="Gastro a víno">Gastro a víno</label><label><input type="checkbox" name="o1_zajmy" value="Vaření a pečení">Vaření a pečení</label><label><input type="checkbox" name="o1_zajmy" value="Káva a čaj">Káva a čaj</label><label><input type="checkbox" name="o1_zajmy" value="Móda a šperky">Móda a šperky</label><label><input type="checkbox" name="o1_zajmy" value="Péče o sebe">Péče o sebe</label><label><input type="checkbox" name="o1_zajmy" value="Domov a design">Domov a design</label><label><input type="checkbox" name="o1_zajmy" value="Příroda a zahrada">Příroda a zahrada</label><label><input type="checkbox" name="o1_zajmy" value="Domácí mazlíčci">Domácí mazlíčci</label><label><input type="checkbox" name="o1_zajmy" value="Technika a gadgety">Technika a gadgety</label><label><input type="checkbox" name="o1_zajmy" value="Auto-moto">Auto-moto</label><label><input type="checkbox" name="o1_zajmy" value="Fotografie">Fotografie</label><label><input type="checkbox" name="o1_zajmy" value="Hry a zábava">Hry a zábava</label><label><input type="checkbox" name="o1_zajmy" value="Rodina a děti">Rodina a děti</label></div></div>
+   </div>
+   <label>Něco, co bych měla vědět? (nepovinné)<textarea name="o1_poznamka" rows="3" maxlength="500" placeholder="Třeba co ráda dělá o víkendu, co už má, o čem mluví nebo co by si přála. Cokoli, co mi pomůže trefit se."></textarea></label>
   </fieldset>
-  <fieldset><legend>Další osoba (nepovinné)</legend>
+  <fieldset><legend>Je ještě někdo, na koho nechceš zapomenout? (nepovinné)</legend>
    <div class="row">
     <label>Jméno<input name="o2_jmeno"></label>
     <label>Vztah k tobě<select name="o2_vztah"><option value="">Vyber</option>
@@ -97,7 +108,12 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
     <label>Měsíc<select name="o2_mesic"><option value="">Vyber</option><option value="1">leden</option><option value="2">únor</option><option value="3">březen</option><option value="4">duben</option><option value="5">květen</option><option value="6">červen</option><option value="7">červenec</option><option value="8">srpen</option><option value="9">září</option><option value="10">říjen</option><option value="11">listopad</option><option value="12">prosinec</option></select></label>
    </div>
    <label>K čemu se datum vztahuje?<select name="o2_typ"><option>narozeniny</option><option>svátek</option><option>výročí svatby</option><option>výročí vztahu</option><option>výročí spolupráce</option><option>jiná příležitost</option></select></label>
-   <div><strong style="font-size:.95rem">Co tato osoba ráda? (vyber vše, co sedí)</strong><div class="chips" style="margin-top:8px"><label><input type="checkbox" name="o2_zajmy" value="Kultura">Kultura</label><label><input type="checkbox" name="o2_zajmy" value="Sport">Sport</label><label><input type="checkbox" name="o2_zajmy" value="Wellness a relax">Wellness a relax</label><label><input type="checkbox" name="o2_zajmy" value="Cestování">Cestování</label><label><input type="checkbox" name="o2_zajmy" value="Knihy">Knihy</label><label><input type="checkbox" name="o2_zajmy" value="Hudba">Hudba</label><label><input type="checkbox" name="o2_zajmy" value="Gastro a víno">Gastro a víno</label><label><input type="checkbox" name="o2_zajmy" value="Technika a gadgety">Technika a gadgety</label><label><input type="checkbox" name="o2_zajmy" value="Móda a šperky">Móda a šperky</label><label><input type="checkbox" name="o2_zajmy" value="Domov a design">Domov a design</label><label><input type="checkbox" name="o2_zajmy" value="Příroda a zahrada">Příroda a zahrada</label><label><input type="checkbox" name="o2_zajmy" value="Auto-moto">Auto-moto</label><label><input type="checkbox" name="o2_zajmy" value="Hry a zábava">Hry a zábava</label><label><input type="checkbox" name="o2_zajmy" value="Umění">Umění</label><label><input type="checkbox" name="o2_zajmy" value="Péče o sebe">Péče o sebe</label><label><input type="checkbox" name="o2_zajmy" value="Rodina a děti">Rodina a děti</label></div></div>
+   <label>Kolik let bude nebo kolikáté je výročí? (nepovinné)<input name="o2_vek" maxlength="60" placeholder="např. 40 let, 10. výročí svatby"></label>
+   <div><strong style="font-size:.95rem">Co by udělalo radost?</strong>
+    <div class="hint">Zaškrtni, co tě napadne. Čím víc napovíš, tím trefnější tipy dostaneš.</div>
+    <div class="pick" tabindex="0" aria-label="Seznam zájmů, posuň a vyber"><div class="chips"><label><input type="checkbox" name="o2_zajmy" value="Cestování">Cestování</label><label><input type="checkbox" name="o2_zajmy" value="Wellness a relax">Wellness a relax</label><label><input type="checkbox" name="o2_zajmy" value="Kultura">Kultura</label><label><input type="checkbox" name="o2_zajmy" value="Divadlo a koncerty">Divadlo a koncerty</label><label><input type="checkbox" name="o2_zajmy" value="Film a seriály">Film a seriály</label><label><input type="checkbox" name="o2_zajmy" value="Knihy">Knihy</label><label><input type="checkbox" name="o2_zajmy" value="Hudba">Hudba</label><label><input type="checkbox" name="o2_zajmy" value="Umění">Umění</label><label><input type="checkbox" name="o2_zajmy" value="Sport">Sport</label><label><input type="checkbox" name="o2_zajmy" value="Outdoor a dobrodružství">Outdoor a dobrodružství</label><label><input type="checkbox" name="o2_zajmy" value="Gastro a víno">Gastro a víno</label><label><input type="checkbox" name="o2_zajmy" value="Vaření a pečení">Vaření a pečení</label><label><input type="checkbox" name="o2_zajmy" value="Káva a čaj">Káva a čaj</label><label><input type="checkbox" name="o2_zajmy" value="Móda a šperky">Móda a šperky</label><label><input type="checkbox" name="o2_zajmy" value="Péče o sebe">Péče o sebe</label><label><input type="checkbox" name="o2_zajmy" value="Domov a design">Domov a design</label><label><input type="checkbox" name="o2_zajmy" value="Příroda a zahrada">Příroda a zahrada</label><label><input type="checkbox" name="o2_zajmy" value="Domácí mazlíčci">Domácí mazlíčci</label><label><input type="checkbox" name="o2_zajmy" value="Technika a gadgety">Technika a gadgety</label><label><input type="checkbox" name="o2_zajmy" value="Auto-moto">Auto-moto</label><label><input type="checkbox" name="o2_zajmy" value="Fotografie">Fotografie</label><label><input type="checkbox" name="o2_zajmy" value="Hry a zábava">Hry a zábava</label><label><input type="checkbox" name="o2_zajmy" value="Rodina a děti">Rodina a děti</label></div></div>
+   </div>
+   <label>Něco, co bych měla vědět? (nepovinné)<textarea name="o2_poznamka" rows="3" maxlength="500" placeholder="Třeba co ráda dělá o víkendu, co už má, o čem mluví nebo co by si přála. Cokoli, co mi pomůže trefit se."></textarea></label>
   </fieldset>
   <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="check"><input type="checkbox" name="gdpr" required><span>Souhlasím se <a href="zasady.html">zpracováním osobních údajů</a> a s tím, že mi budete posílat připomínky. Odhlásit se můžu kdykoli odpovědí STOP.</span></label>
@@ -112,12 +128,27 @@ footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var
   <div><strong>V dobrých rukou.</strong><br>Tvoje údaje používám jen k tomu, abych ti poslala připomínku a tipy.</div>
  </div>
 </section>
+<section>
+ <div class="about">
+  <img src="tereza.jpg" alt="Tereza, zakladatelka služby Nezapomeň" onerror="this.style.display='none'">
+  <div>
+   <h2>Ahoj, jsem Tereza</h2>
+   <p>Dárky miluju. Ráda je vybírám, balím a koukám, jak se někdo zaraduje. Můj muž je naopak vybírá na poslední chvíli, občas i na benzínce. A takových mužů znám víc.</p>
+   <p>Tak vznikl Nezapomeň: malá služba, která na dárky myslí včas a navrhne, co udělá radost. Každý e-mail zatím posílám osobně a ráda si přečtu, co ti pomůže. Napiš mi na <a class="mail-link" href="mailto:ahoj@TVOJEDOMENA.cz">ahoj@TVOJEDOMENA.cz</a>.</p>
+   <p class="sign">Tereza</p>
+  </div>
+ </div>
+</section>
 <footer>© Nezapomeň · <a href="zasady.html">Ochrana osobních údajů</a></footer>
 </div>
 
+<script src="config.js"></script>
 <script>
 // Vlož adresu webové aplikace z Google Apps Scriptu (viz apps-script.gs)
-const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbyLEIbsGlcei8TUa1C1cjFe4Fco5eCHC4Bt7YGWLMVO8j3xX0i4fNYj7SHuAXGvkOU-bA/exec"; 
+const CFG = window.NEZAPOMEN_CONFIG || {};
+const FORM_ENDPOINT = CFG.formEndpoint || "";
+const CONTACT = CFG.email || "";
+if (CONTACT) document.querySelectorAll(".mail-link").forEach(a => { a.href = "mailto:" + CONTACT; a.textContent = CONTACT; });
 const f = document.getElementById('f'), msg = document.getElementById('msg');
 const show = (t, c) => { msg.className = c; msg.textContent = t; };
 f.addEventListener('submit', async e => {
@@ -129,13 +160,13 @@ f.addEventListener('submit', async e => {
   ['o1_zajmy','o2_zajmy'].forEach(n => { data[n] = [...f.querySelectorAll('input[name='+n+']:checked')].map(i => i.value).join(', '); });
   data.gdpr = f.gdpr.checked ? 'ano' : '';
   data.zdroj = new URLSearchParams(location.search).get('utm_source') || 'primo';
-  if (!FORM_ENDPOINT) { show('Formulář zatím není napojený. Nastav FORM_ENDPOINT v souboru index.html.', 'err'); return; }
+  if (!FORM_ENDPOINT) { show('Formulář zatím není napojený. Vlož adresu do souboru config.js.', 'err'); return; }
   const btn = f.querySelector('button'); btn.disabled = true;
   try {
     // text/plain + no-cors: Apps Script nepodporuje předběžný dotaz (preflight). Odpověď nelze přečíst, úspěch poznáš v tabulce.
     await fetch(FORM_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)});
     f.reset(); show('Hotovo! Za chvíli ti dorazí uvítací e-mail. Podívej se i do složky Promo nebo Spam.', 'ok');
-  } catch { show('Něco se nepovedlo. Zkus to prosím znovu, nebo napiš na tereza@nezapomen.cz.', 'err'); }
+  } catch { show('Něco se nepovedlo. Zkus to prosím znovu' + (CONTACT ? ', nebo napiš na ' + CONTACT : '') + '.', 'err'); }
   btn.disabled = false;
 });
 </script>
