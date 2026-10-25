@@ -195,7 +195,9 @@ f.addEventListener('submit', async e => {
   if (!f.checkValidity()) { f.reportValidity(); return; }
   const data = Object.fromEntries(new FormData(f).entries());
   delete data.web;
-  ['o1_zajmy','o2_zajmy'].forEach(n => { data[n] = [...f.querySelectorAll('input[name='+n+']:checked')].map(i => i.value).join(', '); });
+  if (data.o1_typ === 'jiná příležitost' && data.o1_typ_jina) data.o1_typ = 'jiná příležitost: ' + data.o1_typ_jina;
+  delete data.o1_typ_jina;
+  ['o1_zajmy','o1_styl','o1_dar'].forEach(n => { data[n] = [...f.querySelectorAll('input[name='+n+']:checked')].map(i => i.value).join(', '); });
   data.gdpr = f.gdpr.checked ? 'ano' : '';
   data.zdroj = new URLSearchParams(location.search).get('utm_source') || 'primo';
   if (!FORM_ENDPOINT) { show('Formulář zatím není napojený. Vlož adresu do souboru config.js.', 'err'); return; }
@@ -203,7 +205,10 @@ f.addEventListener('submit', async e => {
   try {
     // text/plain + no-cors: Apps Script nepodporuje předběžný dotaz (preflight). Odpověď nelze přečíst, úspěch poznáš v tabulce.
     await fetch(FORM_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)});
-    f.reset(); show('Hotovo! Za chvíli ti dorazí uvítací e-mail. Podívej se i do složky Promo nebo Spam.', 'ok');
+    // vymaž jen údaje o osobě; e-mail, jméno a souhlas zůstanou pro přidání další osoby
+    f.querySelectorAll('[name^="o1_"]').forEach(el => { if (el.type === 'checkbox') el.checked = false; else if (el.type === 'radio') el.checked = (el.value === 'narozeniny'); else el.value = ''; });
+    toggleJina();
+    show('Hotovo, děkuju! Brzy ti napíšu. Podívej se i do složky Promo nebo Spam. Chceš přidat ještě někoho? Vyplň formulář znovu, e-mail už máš vyplněný.', 'ok');
   } catch { show('Něco se nepovedlo. Zkus to prosím znovu' + (CONTACT ? ', nebo napiš na ' + CONTACT : '') + '.', 'err'); }
   btn.disabled = false;
 });
