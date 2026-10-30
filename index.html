@@ -236,6 +236,9 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 .step{transition:transform .25s}.step:hover{transform:translateY(-4px)}
 .trust>div{transition:transform .25s}.trust>div:hover{transform:translateY(-4px)}
 .final{background:radial-gradient(600px 300px at 80% 0,rgba(194,37,92,.35),transparent 60%),radial-gradient(500px 300px at 10% 100%,rgba(15,107,107,.55),transparent 60%),#0f1420}
+.ccard.more{background:radial-gradient(300px 200px at 90% 0,rgba(194,37,92,.45),transparent 60%),radial-gradient(300px 200px at 0 100%,rgba(15,107,107,.6),transparent 60%),#0f1420;border-color:#0f1420;justify-content:center}
+.ccard.more .ctext{position:static;display:flex;flex-direction:column;gap:10px;color:#fff;text-decoration:none;padding:28px;height:100%;justify-content:center}
+.ccard.more .ctext b{font-size:1.9rem;line-height:1.1}.ccard.more .ctext span{color:#d3d8e4;font-size:1.05rem}.ccard.more .ctext em{color:#ffd666;font-style:normal;font-weight:700}
 @media(max-width:760px){.chip.c3{display:none}.chip.c1{left:0}.herophoto{height:260px}.ccard{height:310px}.cart{inset:0 0 100px 0}}
 @media(prefers-reduced-motion:reduce){.scene svg,.lid,.spark,.chip,.mtrack,.confetti i{animation:none!important}.spark{opacity:0}.js .reveal{opacity:1;transform:none}.btn::after{display:none}.marquee{overflow-x:auto}}
 
@@ -322,7 +325,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 
 <section class="csec">
 <div class="wrap chead reveal">
- <div><p class="eyebrow">Inspirace</p><h2>Co všechno ti můžu navrhnout</h2></div>
+ <div><p class="eyebrow">Inspirace</p><h2>Ukázka toho, co ti můžu navrhnout. A mnohem víc.</h2></div>
  <div class="carrows"><button type="button" id="cprev" aria-label="Předchozí">←</button><button type="button" id="cnext" aria-label="Další">→</button></div>
 </div>
 <ul class="cscroll" id="cscroll" tabindex="0" aria-label="Nápady na dárky, posouvej do stran">
@@ -334,6 +337,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 <li class="ccard" style="--bg:#f6e6bf"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><g fill="#e88aa8" stroke="#1c2233" stroke-width="6"><circle cx="0" cy="-55" r="32"/><circle cx="52" cy="-17" r="32"/><circle cx="32" cy="45" r="32"/><circle cx="-32" cy="45" r="32"/><circle cx="-52" cy="-17" r="32"/></g><circle cx="0" cy="0" r="26" fill="#ffd666" stroke="#1c2233" stroke-width="6"/><path d="M0 80v35" fill="none" stroke="#1c2233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div><img class="cphoto" src="img/kategorie/kvetiny.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Květiny a drobnosti</b><span>Klasika, která vždy potěší</span><em>od 500 Kč</em></div></li>
 <li class="ccard" style="--bg:#f1cdd5"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M-55-45l-25 35 80 90 80-90-25-35z" fill="#fff" stroke="#1c2233" stroke-width="7" stroke-linejoin="round"/><path d="M-80-10h160M-30-45L0 80M30-45L0 80M-55-45L-30-10M55-45L30-10" fill="none" stroke="#0f6b6b" stroke-width="5"/><circle cx="0" cy="-70" r="8" fill="#ffd666"/></g></svg></div><img class="cphoto" src="img/kategorie/sperky.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Šperky a móda</b><span>Něco hezkého na sebe</span><em>od 800 Kč</em></div></li>
 <li class="ccard" style="--bg:#cfe3e1"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><rect x="-85" y="-10" width="170" height="100" rx="10" fill="#fff" stroke="#1c2233" stroke-width="7"/><rect x="-100" y="-45" width="200" height="40" rx="8" fill="#fff" stroke="#1c2233" stroke-width="7"/><path d="M0-45v135" stroke="#c2255c" stroke-width="14"/><path d="M0-45c-35-55-95-15 0-15 95 0 35-40 0 15z" fill="none" stroke="#c2255c" stroke-width="9" stroke-linejoin="round"/></g></svg></div><img class="cphoto" src="img/kategorie/obecne.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Online poukazy</b><span>Když je termín blízko, stačí e-mail</span><em>od 300 Kč</em></div></li>
+<li class="ccard more"><a href="#registrace" class="ctext"><b>A mnohem víc</b><span>Tipy vybírám podle toho, co má ráda a kde bydlíte</span><em>Chci tipy na dárky zdarma →</em></a></li>
 </ul>
 <div class="cdots" id="cdots" aria-hidden="true"></div>
 </section>
@@ -486,7 +490,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
   <h2>Letos žádný dárek na poslední chvíli.</h2>
   <p>Dostaneš včas připomínku a 3 tipy na dárky. Vybereš si, objednáš a máš hotovo.</p>
   <a class="btn" href="#registrace">Chci tipy na dárky zdarma</a>
-  <p class="small" style="margin:14px 0 0;color:#ffd666">Zdarma pro prvních 200 členů</p>
+  <p class="small" style="margin:14px auto 0;color:#ffd666;text-align:center">Zdarma pro prvních 200 členů</p>
  </div>
 </div>
 
