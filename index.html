@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nezapomeň – připomínka narozenin a výročí s tipy na dárky</title>
-<meta name="description" content="Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy na dárky podle toho, co má ráda. Zdarma pro prvních 1 000 členů.">
+<meta name="description" content="Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy na dárky podle toho, co má ráda. Zdarma pro prvních 200 členů.">
 <meta property="og:title" content="Nezapomeň – připomínka narozenin a výročí s tipy na dárky">
-<meta property="og:description" content="Nemáš čas? Dárek vyberu já. Tři týdny předem připomínka a 3 tipy na dárky. Zdarma pro prvních 1 000 členů.">
+<meta property="og:description" content="Nemáš čas? Dárek vyberu já. Tři týdny předem připomínka a 3 tipy na dárky. Zdarma pro prvních 200 členů.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="cs_CZ">
 <meta name="theme-color" content="#0f6b6b">
@@ -160,30 +160,156 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 }
 @media(max-width:430px){.row{grid-template-columns:1fr}.row.dm{grid-template-columns:1fr 2fr}.usp{font-size:.88rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== Pohyb a interakce (vše bez knihoven; respektuje „omezit animace“) ===== */
+.btn{background:linear-gradient(110deg,#c2255c 0%,#e0457b 50%,#c2255c 100%);background-size:220% 100%;position:relative;overflow:hidden;box-shadow:0 10px 26px -10px rgba(194,37,92,.7);transition:transform .18s,box-shadow .25s,background-position .5s}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-130%);transition:transform .7s;pointer-events:none}
+.btn:hover{background-position:100% 0;box-shadow:0 14px 34px -8px rgba(194,37,92,.8),0 0 0 3px rgba(255,214,102,.55)}
+.btn:hover::after{transform:translateX(130%)}
+.btn:active{transform:translateY(1px)}
+.herodark{background:radial-gradient(900px 520px at 88% 18%,rgba(194,37,92,.30),transparent 60%),radial-gradient(760px 520px at 8% 95%,rgba(15,107,107,.5),transparent 60%),#0f1420;color:#fff}
+.herodark .logo{color:#fff}
+.herodark .lead{color:#c9d0e0}
+.herodark .small{color:#aab3c7}
+.hl{background:linear-gradient(100deg,#ffd666 0%,#ff8db0 55%,#9be0dc 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.herophoto{background:radial-gradient(closest-side,rgba(255,255,255,.10),transparent 75%);overflow:visible}
+.herophoto img{border-radius:24px}
+.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.scene svg{width:min(78%,330px);height:auto;overflow:visible;animation:bob 5s ease-in-out infinite}
+.lid{transform-box:fill-box;transform-origin:30% 100%;animation:lid 6s ease-in-out infinite}
+.spark{transform-box:fill-box;transform-origin:center;opacity:0;animation:spark 6s ease-in-out infinite}
+.spark.s2{animation-delay:.12s}.spark.s3{animation-delay:.24s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes lid{0%,55%{transform:translateY(0) rotate(0)}66%{transform:translateY(-34px) rotate(-9deg)}82%{transform:translateY(-34px) rotate(-9deg)}93%,100%{transform:translateY(0) rotate(0)}}
+@keyframes spark{0%,58%{opacity:0;transform:translateY(8px) scale(.3)}68%{opacity:1;transform:translateY(-18px) scale(1)}86%{opacity:1;transform:translateY(-30px) scale(.9)}96%,100%{opacity:0;transform:translateY(-44px) scale(.3)}}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:24px}
+.confetti i{position:absolute;bottom:-12px;width:8px;height:12px;border-radius:2px;opacity:0;animation:rise var(--d,7s) linear var(--w,0s) infinite}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.9}100%{transform:translateY(-440px) rotate(540deg);opacity:0}}
+.chip{position:absolute;z-index:2;background:rgba(255,255,255,.96);color:#1c2233;border-radius:99px;padding:8px 14px;font-weight:700;font-size:.85rem;box-shadow:0 12px 30px rgba(0,0,0,.28);animation:bob 4.5s ease-in-out infinite}
+.chip.c1{top:10%;left:2%}.chip.c2{top:20%;right:0;animation-delay:-1.5s}.chip.c3{top:48%;left:-2%;animation-delay:-3s}
+.badge{z-index:2;color:#1c2233}
+/* pás kategorií */
+.usp-wrap{background:#0f1420;border-top:1px solid rgba(255,255,255,.08)}
+.marquee{background:#0f1420;overflow:hidden;padding:4px 0 26px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mtrack{display:flex;width:max-content;animation:mq 46s linear infinite}
+.marquee:hover .mtrack{animation-play-state:paused}
+.mtrack ul{display:flex;gap:12px;list-style:none;margin:0;padding:0 6px}
+.mtrack li{white-space:nowrap;color:#e8ecf5;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);border-radius:99px;padding:9px 18px;font-weight:600;font-size:.95rem;transition:box-shadow .2s,border-color .2s,transform .2s}
+.mtrack li:hover{border-color:#ffd666;box-shadow:0 0 22px -4px rgba(255,214,102,.65);transform:translateY(-2px)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* karusel nápadů */
+.csec{padding-bottom:56px}
+.chead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.chead h2{margin:0;max-width:16em}
+.carrows{display:flex;gap:10px}
+.carrows button{width:48px;height:48px;border-radius:99px;border:1px solid var(--field);background:#fff;font-size:1.3rem;cursor:pointer;color:var(--ink);transition:background .2s,color .2s,transform .2s,box-shadow .2s}
+.carrows button:hover{background:var(--teal);color:#fff;border-color:var(--teal);transform:translateY(-2px);box-shadow:0 10px 22px -8px rgba(15,107,107,.6)}
+.cscroll{display:flex;gap:18px;list-style:none;margin:0;padding:6px max(16px,calc((100vw - 1120px)/2 + 16px)) 24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:max(16px,calc((100vw - 1120px)/2 + 16px));scrollbar-width:none}
+.cscroll::-webkit-scrollbar{display:none}
+.ccard{position:relative;flex:0 0 min(78vw,290px);height:340px;border-radius:24px;overflow:hidden;scroll-snap-align:start;background:linear-gradient(160deg,var(--bg),#fff 130%);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-end;transition:transform .25s,box-shadow .25s}
+.ccard:hover{transform:translateY(-6px) rotate(-.4deg);box-shadow:0 22px 44px -18px rgba(28,34,51,.45)}
+.cart{position:absolute;inset:0 0 110px 0;display:flex;align-items:center;justify-content:center}
+.cart svg{width:82%;height:100%;transition:transform .4s}
+.ccard:hover .cart svg{transform:scale(1.08) rotate(-3deg)}
+.cphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ccard:has(.cphoto)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,14,24,.78))}
+.ctext{position:relative;z-index:1;padding:18px 20px 20px;display:grid;gap:2px}
+.ctext b{font:600 1.25rem var(--serif)}
+.ctext span{font-size:.92rem;color:var(--mute)}
+.ctext em{font-style:normal;font-weight:700;font-size:.9rem;color:var(--ribbon);margin-top:4px}
+.ccard:has(.cphoto) .ctext{color:#fff}.ccard:has(.cphoto) .ctext span{color:#e3e8f2}.ccard:has(.cphoto) .ctext em{color:#ffd666}
+.cdots{display:flex;gap:8px;justify-content:center;margin-top:4px}
+.cdots i{width:8px;height:8px;border-radius:99px;background:#cfd4de;transition:width .25s,background .25s}
+.cdots i.on{width:26px;background:var(--ribbon)}
+/* interaktivní ukázka e-mailu */
+.picks{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+.pk{font:600 .95rem var(--sans);border:1px solid var(--field);background:#fff;color:var(--ink);border-radius:99px;padding:10px 16px;min-height:44px;cursor:pointer;transition:all .2s}
+.pk:hover{border-color:var(--teal);transform:translateY(-2px)}
+.pk.on{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 10px 22px -10px rgba(15,107,107,.7)}
+#tips{transition:opacity .25s,transform .25s}
+#tips.swap{opacity:0;transform:translateY(8px)}
+.tip{transition:transform .2s,box-shadow .2s}
+.tip:hover{transform:translateX(4px);box-shadow:0 8px 20px -10px rgba(28,34,51,.35)}
+/* vstupy při posunu */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+.step{transition:transform .25s}.step:hover{transform:translateY(-4px)}
+.trust>div{transition:transform .25s}.trust>div:hover{transform:translateY(-4px)}
+.final{background:radial-gradient(600px 300px at 80% 0,rgba(194,37,92,.35),transparent 60%),radial-gradient(500px 300px at 10% 100%,rgba(15,107,107,.55),transparent 60%),#0f1420}
+@media(max-width:760px){.chip.c3{display:none}.chip.c1{left:0}.herophoto{height:260px}.ccard{height:310px}.cart{inset:0 0 100px 0}}
+@media(prefers-reduced-motion:reduce){.scene svg,.lid,.spark,.chip,.mtrack,.confetti i{animation:none!important}.spark{opacity:0}.js .reveal{opacity:1;transform:none}.btn::after{display:none}.marquee{overflow-x:auto}}
+
+/* ===== horní lišta ===== */
+[id]{scroll-margin-top:78px}
+.nav{position:sticky;top:0;z-index:40;background:rgba(15,20,32,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.navin{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:66px;position:relative}
+.nav .logo{color:#fff;font-size:1rem;max-width:20em}
+#menu{display:flex;align-items:center;gap:4px}
+#menu a{color:#d9deea;text-decoration:none;font-weight:600;font-size:.97rem;padding:10px 14px;border-radius:99px;min-height:44px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+#menu a:hover{background:rgba(255,255,255,.1);color:#fff}
+#menu a.on{color:#ffd666}
+#menu a.n-cta{background:linear-gradient(110deg,#c2255c,#e0457b 55%,#c2255c);background-size:200% 100%;color:#fff;margin-right:6px;box-shadow:0 8px 20px -8px rgba(194,37,92,.8);transition:background-position .4s,box-shadow .25s,transform .18s}
+#menu a.n-cta:hover{background-position:100% 0;box-shadow:0 10px 26px -6px rgba(194,37,92,.9),0 0 0 3px rgba(255,214,102,.5);transform:translateY(-1px)}
+.navbtn{display:none;width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
+.navbtn span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,opacity .2s}
+.navbtn[aria-expanded=true] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.navbtn[aria-expanded=true] span:nth-child(2){opacity:0}
+.navbtn[aria-expanded=true] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:900px){
+ .navbtn{display:flex}
+ .nav .logo{font-size:.85rem;max-width:14em}
+ #menu{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:4px;background:rgba(15,20,32,.97);padding:12px 16px 16px;border-bottom:1px solid rgba(255,255,255,.1);display:none}
+ #menu.open{display:flex}
+ #menu a{padding:14px 16px;font-size:1.05rem;border-radius:12px}
+ #menu a.n-cta{margin:0 0 4px;justify-content:center}
+}
 </style>
 </head>
 <body>
 
-<div class="band">
+<header class="nav">
+ <div class="wrap navin">
+  <a class="logo" href="#">Nezapomeň – připomínka narozenin a výročí s tipy na dárky</a>
+  <nav id="menu" aria-label="Hlavní menu"><a class="n-cta" href="#registrace">Najít dárek</a><a href="#jak">Jak to funguje</a><a href="#faq">Časté dotazy</a><a href="o-mne.html">O mně</a></nav>
+  <button class="navbtn" id="navbtn" type="button" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span><b class="sr">Menu</b></button>
+ </div>
+</header>
+<div class="band herodark">
 <div class="wrap">
-<header><a class="logo" href="#">Nezapomeň – připomínka narozenin a výročí s tipy na dárky</a></header>
 <div class="hero">
  <div>
-  <h1>Nemáš čas?<br>Dárek vyberu já.</h1>
-  <p class="lead">Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy na dárky podle toho, co má ráda. Ty si jen vybereš.</p>
-  <a class="btn" href="#registrace">Chci připomínky s tipy zdarma</a>
-  <p class="small" style="margin-top:14px">Zdarma pro prvních 1 000 členů · bez platební karty</p>
+  <p class="eyebrow" style="color:#ffd666">Dárkový asistent pro muže · tipy na dárky pro ženy</p>
+  <h1>Nemáš čas?<br><span class="hl">Dárek vyberu já.</span></h1>
+  <p class="lead">Vybereš dárek, který ji potěší, aniž bys musel trávit hodiny hledáním. Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy podle toho, co má ráda.</p>
+  <a class="btn" href="#registrace">Chci tipy na dárky zdarma</a>
+  <p class="small" style="margin-top:14px">Zdarma pro prvních 200 členů · stačí e-mail · vybíráš ty, bez závazku</p>
  </div>
  <div class="herophoto" aria-hidden="true">
-  <svg viewBox="0 0 120 100"><rect x="22" y="44" width="76" height="48" rx="8" fill="#fff" stroke="#0f6b6b" stroke-width="4"/><rect x="16" y="32" width="88" height="16" rx="6" fill="#fff" stroke="#0f6b6b" stroke-width="4"/><line x1="60" y1="32" x2="60" y2="92" stroke="#c2255c" stroke-width="6"/><path d="M60 32C44 10 26 30 60 32 94 30 76 10 60 32z" fill="none" stroke="#c2255c" stroke-width="5"/></svg>
+  <div class="scene">
+   <svg viewBox="0 0 300 300">
+    <ellipse cx="150" cy="268" rx="96" ry="12" fill="#000" opacity=".28"/>
+    <g class="spark"><path d="M110 120l5 11 11 5-11 5-5 11-5-11-11-5 11-5z" fill="#ffd666"/></g>
+    <g class="spark s2"><path d="M190 100l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#ff8db0"/></g>
+    <g class="spark s3"><circle cx="150" cy="96" r="7" fill="#9be0dc"/></g>
+    <rect x="62" y="136" width="176" height="124" rx="14" fill="#0f6b6b"/>
+    <rect x="62" y="136" width="176" height="30" rx="10" fill="#0b5656"/>
+    <rect x="136" y="136" width="28" height="124" fill="#c2255c"/>
+    <g class="lid"><rect x="50" y="102" width="200" height="42" rx="12" fill="#14867f"/><rect x="136" y="102" width="28" height="42" fill="#e0457b"/><path d="M150 102c-34-48-82-14-40 8 14 6 34 2 40-8z" fill="none" stroke="#ff8db0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M150 102c34-48 82-14 40 8-14 6-34 2-40-8z" fill="none" stroke="#ff8db0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g>
+   </svg>
+   <div class="confetti" id="confetti"></div>
+  </div>
   <img src="foto/hero.jpg" alt="" onerror="this.remove()">
+  <span class="chip c1">21 dní předem</span>
+  <span class="chip c2">3 tipy na dárek</span>
+  <span class="chip c3">Tipy z okolí: Brno</span>
   <div class="badge">Anežka: narozeniny za 21 dní + 3 tipy</div>
  </div>
 </div>
 </div>
 </div>
 
-<div class="dark"><div class="wrap">
+<div class="dark usp-wrap"><div class="wrap">
  <div class="usp">
   <span><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="5" width="22" height="16" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 7l10 8 10-8" fill="none" stroke="#ffd666" stroke-width="2"/></svg>E-mail 21 dní předem</span>
   <span><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 3l3 7 7 .6-5.3 4.6 1.7 7L13 18.5 6.6 22.2l1.7-7L3 10.6 10 10z" fill="#ffd666"/></svg>3 konkrétní tipy</span>
@@ -192,44 +318,66 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
  </div>
 </div></div>
 
+<div class="marquee" aria-label="Kategorie dárků"><div class="mtrack"><ul><li>Wellness</li><li>Víno a gastro</li><li>Koncerty</li><li>Divadlo</li><li>Restaurace</li><li>Květiny</li><li>Cestování</li><li>Online poukazy</li><li>Šperky</li><li>Knihy</li><li>Zážitky</li><li>Sport</li><li>Káva a čaj</li><li>Umění</li></ul><ul aria-hidden="true"><li>Wellness</li><li>Víno a gastro</li><li>Koncerty</li><li>Divadlo</li><li>Restaurace</li><li>Květiny</li><li>Cestování</li><li>Online poukazy</li><li>Šperky</li><li>Knihy</li><li>Zážitky</li><li>Sport</li><li>Káva a čaj</li><li>Umění</li></ul></div></div>
+
+<section class="csec">
+<div class="wrap chead reveal">
+ <div><p class="eyebrow">Inspirace</p><h2>Co všechno ti můžu navrhnout</h2></div>
+ <div class="carrows"><button type="button" id="cprev" aria-label="Předchozí">←</button><button type="button" id="cnext" aria-label="Další">→</button></div>
+</div>
+<ul class="cscroll" id="cscroll" tabindex="0" aria-label="Nápady na dárky, posouvej do stran">
+<li class="ccard" style="--bg:#cfe3e1"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M0-90c35 35 40 85 0 130-40-45-35-95 0-130z" fill="#0f6b6b"/><path d="M-85-35c50 5 85 45 85 95-55 0-95-35-85-95z" fill="#3d9a98"/><path d="M85-35c-50 5-85 45-85 95 55 0 95-35 85-95z" fill="#3d9a98"/><path d="M-100 80h200" fill="none" stroke="#1c2233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div><img class="cphoto" src="img/kategorie/wellness.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Wellness a relax</b><span>Společný čas bez shonu</span><em>od 600 Kč</em></div></li>
+<li class="ccard" style="--bg:#f1cdd5"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M-45-90h90v55a45 45 0 0 1-90 0z" fill="#c2255c" stroke="#1c2233" stroke-width="7" stroke-linejoin="round"/><path d="M-45-45h90" stroke="#fff" stroke-width="6" opacity=".6"/><path d="M0 10v80M-40 95h80" fill="none" stroke="#1c2233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div><img class="cphoto" src="img/kategorie/vino.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Víno a gastro</b><span>Degustace, večeře, sklípek</span><em>od 700 Kč</em></div></li>
+<li class="ccard" style="--bg:#fde8ec"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M-110-45h220v30a22 22 0 0 0 0 44v30h-220v-30a22 22 0 0 0 0-44z" fill="#c2255c" stroke="#1c2233" stroke-width="7" stroke-linejoin="round"/><path d="M20-45v110" stroke="#fff" stroke-width="5" stroke-dasharray="3 12" stroke-linecap="round"/><path d="M-45 10l11 22 24 3-17 17 4 24-22-12-22 12 4-24-17-17 24-3z" fill="#ffd666"/></g></svg></div><img class="cphoto" src="img/kategorie/zazitek.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Zážitky</b><span>Kurz, výlet, vstupenky</span><em>od 900 Kč</em></div></li>
+<li class="ccard" style="--bg:#e6e0f5"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M-30-80l100-20v125" fill="none" stroke="#1c2233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30-80v140" fill="none" stroke="#1c2233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="-55" cy="62" rx="32" ry="24" fill="#c2255c" stroke="#1c2233" stroke-width="7"/><ellipse cx="45" cy="40" rx="32" ry="24" fill="#0f6b6b" stroke="#1c2233" stroke-width="7"/></g></svg></div><img class="cphoto" src="img/kategorie/hudba.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Koncerty a divadlo</b><span>Večer, který zůstane v paměti</span><em>od 900 Kč</em></div></li>
+<li class="ccard" style="--bg:#d8ecf2"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M-100 20l90-20-80-70 25-8 115 55 60-30c12-6 30 10 20 22l-60 35 5 70-22 8-30-60-60 35-12-22z" fill="#fff" stroke="#1c2233" stroke-width="7" stroke-linejoin="round" transform="scale(.9) rotate(-20)"/><path d="M-110 80c40 20 120 20 190-20" fill="none" stroke="#c2255c" stroke-width="6" stroke-dasharray="4 14" stroke-linecap="round"/></g></svg></div><img class="cphoto" src="img/kategorie/cestovani.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Cestování</b><span>Víkend ve městě nebo výlet na den</span><em>od 800 Kč</em></div></li>
+<li class="ccard" style="--bg:#f6e6bf"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><g fill="#e88aa8" stroke="#1c2233" stroke-width="6"><circle cx="0" cy="-55" r="32"/><circle cx="52" cy="-17" r="32"/><circle cx="32" cy="45" r="32"/><circle cx="-32" cy="45" r="32"/><circle cx="-52" cy="-17" r="32"/></g><circle cx="0" cy="0" r="26" fill="#ffd666" stroke="#1c2233" stroke-width="6"/><path d="M0 80v35" fill="none" stroke="#1c2233" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div><img class="cphoto" src="img/kategorie/kvetiny.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Květiny a drobnosti</b><span>Klasika, která vždy potěší</span><em>od 500 Kč</em></div></li>
+<li class="ccard" style="--bg:#f1cdd5"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><path d="M-55-45l-25 35 80 90 80-90-25-35z" fill="#fff" stroke="#1c2233" stroke-width="7" stroke-linejoin="round"/><path d="M-80-10h160M-30-45L0 80M30-45L0 80M-55-45L-30-10M55-45L30-10" fill="none" stroke="#0f6b6b" stroke-width="5"/><circle cx="0" cy="-70" r="8" fill="#ffd666"/></g></svg></div><img class="cphoto" src="img/kategorie/sperky.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Šperky a móda</b><span>Něco hezkého na sebe</span><em>od 800 Kč</em></div></li>
+<li class="ccard" style="--bg:#cfe3e1"><div class="cart"><svg viewBox="-150 -120 300 240" aria-hidden="true"><g transform="scale(1.05)"><rect x="-85" y="-10" width="170" height="100" rx="10" fill="#fff" stroke="#1c2233" stroke-width="7"/><rect x="-100" y="-45" width="200" height="40" rx="8" fill="#fff" stroke="#1c2233" stroke-width="7"/><path d="M0-45v135" stroke="#c2255c" stroke-width="14"/><path d="M0-45c-35-55-95-15 0-15 95 0 35-40 0 15z" fill="none" stroke="#c2255c" stroke-width="9" stroke-linejoin="round"/></g></svg></div><img class="cphoto" src="img/kategorie/obecne.jpg" alt="" loading="lazy" onerror="this.remove()"><div class="ctext"><b>Online poukazy</b><span>Když je termín blízko, stačí e-mail</span><em>od 300 Kč</em></div></li>
+</ul>
+<div class="cdots" id="cdots" aria-hidden="true"></div>
+</section>
+
 <section>
 <div class="wrap split">
  <div>
   <p class="eyebrow">Takový e-mail ti přijde</p>
   <h2>Tři konkrétní tipy, ne obecné rady</h2>
   <p class="lead">U každého tipu uvidíš název, jednu větu proč se hodí, orientační cenu a odkaz. Vybereš a objednáš.</p>
+  <p class="small" style="margin-bottom:6px"><b>Vyzkoušej:</b> vyber, co ji baví, a uvidíš, jaké tipy by přišly.</p>
+  <div class="picks" id="picks" role="group" aria-label="Co ji baví"><button type="button" class="pk on" data-k="wellness">Wellness</button><button type="button" class="pk" data-k="cestovani">Cestování</button><button type="button" class="pk" data-k="kultura">Kultura</button><button type="button" class="pk" data-k="pece">Péče o sebe</button><button type="button" class="pk" data-k="dobrodruzstvi">Dobrodružství</button></div>
   <p class="small">Ukázka. Skutečné tipy vyberu podle toho, co o ní napíšeš, a podle místa, kde bydlíte.</p>
  </div>
- <div class="mail-card" aria-label="Ukázka e-mailu">
+ <div class="reveal mail-card" aria-label="Ukázka e-mailu">
   <div class="mail-head">Nezapomeň</div>
   <div class="mail-body">
    <strong class="mail-subj">Anežka: narozeniny za 21 dní + 3 tipy</strong>
    <p class="mail-text">Máš ještě 21 dní. Tipy z okolí: Brno.</p>
-   <div class="tip"><span class="ph" style="background:#cfe3e1"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 8c5 5 6 12 0 22-6-10-5-17 0-22z" fill="#0f6b6b"/><path d="M11 17c6 1 11 6 11 13-7 0-12-5-11-13z" fill="#3d9a98"/><path d="M33 17c-6 1-11 6-11 13 7 0 12-5 11-13z" fill="#3d9a98"/></svg><img src="foto/tip-wellness.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 1</span><b>Wellness víkend pro dva</b><span class="tip-d">Společný čas a odpočinek v příjemném hotelu.</span><span class="tip-p">od 3 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
-   <div class="tip"><span class="ph" style="background:#f1cdd5"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M13 8h18v8a9 9 0 0 1-18 0z" fill="#c2255c"/><path d="M22 25v10M16 36h12" stroke="#c2255c" stroke-width="2.5" stroke-linecap="round"/></svg><img src="foto/tip-vino.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 2</span><b>Degustace vín na jižní Moravě</b><span class="tip-d">Odpoledne mezi vinicemi a večeře ve sklípku.</span><span class="tip-p">od 1 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
-   <div class="tip"><span class="ph" style="background:#f6e6bf"><svg viewBox="0 0 44 44" aria-hidden="true"><g fill="#e88aa8"><circle cx="22" cy="12" r="6"/><circle cx="32" cy="19" r="6"/><circle cx="28" cy="31" r="6"/><circle cx="16" cy="31" r="6"/><circle cx="12" cy="19" r="6"/></g><circle cx="22" cy="23" r="5" fill="#f6c453"/></svg><img src="foto/tip-kvetiny.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 3</span><b>Kytice a kniha, kterou si přeje</b><span class="tip-d">Osobní pozornost, která nemusí stát majlant.</span><span class="tip-p">od 700 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
+   <div id="tips"><div class="tip"><span class="ph" style="background:#cfe3e1"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 8c5 5 6 12 0 22-6-10-5-17 0-22z" fill="#0f6b6b"/><path d="M11 17c6 1 11 6 11 13-7 0-12-5-11-13z" fill="#3d9a98"/><path d="M33 17c-6 1-11 6-11 13 7 0 12-5 11-13z" fill="#3d9a98"/></svg><img src="img/kategorie/wellness.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 1</span><b>Wellness víkend pro dva</b><span class="tip-d">Společný čas a odpočinek v příjemném hotelu.</span><span class="tip-p">od 3 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
+   <div class="tip"><span class="ph" style="background:#f1cdd5"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M13 8h18v8a9 9 0 0 1-18 0z" fill="#c2255c"/><path d="M22 25v10M16 36h12" stroke="#c2255c" stroke-width="2.5" stroke-linecap="round"/></svg><img src="img/kategorie/vino.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 2</span><b>Degustace vín na jižní Moravě</b><span class="tip-d">Odpoledne mezi vinicemi a večeře ve sklípku.</span><span class="tip-p">od 1 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
+   <div class="tip"><span class="ph" style="background:#f6e6bf"><svg viewBox="0 0 44 44" aria-hidden="true"><g fill="#e88aa8"><circle cx="22" cy="12" r="6"/><circle cx="32" cy="19" r="6"/><circle cx="28" cy="31" r="6"/><circle cx="16" cy="31" r="6"/><circle cx="12" cy="19" r="6"/></g><circle cx="22" cy="23" r="5" fill="#f6c453"/></svg><img src="img/kategorie/kvetiny.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 3</span><b>Kytice a kniha, kterou si přeje</b><span class="tip-d">Osobní pozornost, která nemusí stát majlant.</span><span class="tip-p">od 700 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div></div>
    <div class="mail-foot">Nechceš nic řešit? Odpověz číslem tipu a zařídím to za tebe.</div>
   </div>
  </div>
 </div>
 </section>
 
-<section class="white">
+<section class="white" id="jak">
 <div class="wrap">
  <h2>Jak to funguje</h2>
  <p class="lead" style="margin-bottom:34px">Tři jednoduché kroky. Žádná práce navíc.</p>
  <div class="steps">
-  <div class="step">
+  <div class="step reveal">
    <svg viewBox="0 0 160 110" role="img" aria-label="Kalendář s označeným datem"><rect x="38" y="16" width="84" height="80" rx="10" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M38 38V26a10 10 0 0 1 10-10h64a10 10 0 0 1 10 10v12z" fill="#0f6b6b"/><line x1="58" y1="9" x2="58" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><line x1="102" y1="9" x2="102" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><g fill="#c9ced8"><circle cx="54" cy="52" r="3"/><circle cx="72" cy="52" r="3"/><circle cx="90" cy="52" r="3"/><circle cx="108" cy="52" r="3"/><circle cx="54" cy="68" r="3"/><circle cx="72" cy="68" r="3"/><circle cx="108" cy="68" r="3"/><circle cx="54" cy="84" r="3"/><circle cx="72" cy="84" r="3"/><circle cx="90" cy="84" r="3"/></g><circle cx="90" cy="68" r="10" fill="#c2255c"/><path d="M90 73.5l-4.6-4.4a2.9 2.9 0 0 1 4.6-3.3 2.9 2.9 0 0 1 4.6 3.3z" fill="#fff"/></svg>
    <div><h3>1. Nastavíš důležité datum</h3><p>Zadáš, komu chceš udělat radost, kdy slaví a co má ráda.</p></div>
   </div>
-  <div class="step">
+  <div class="step reveal">
    <svg viewBox="0 0 160 110" role="img" aria-label="Obálka s odznakem 21 dní"><rect x="26" y="34" width="104" height="62" rx="8" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M28 38l50 34 50-34" fill="none" stroke="#1c2233" stroke-width="3" stroke-linejoin="round"/><circle cx="124" cy="32" r="18" fill="#c2255c"/><text x="124" y="33" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">21</text><text x="124" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="600" fill="#fff">dní</text></svg>
    <div><h3>2. Připomenu ti ho včas</h3><p>Tři týdny předem dostaneš e-mail, abys měl čas dárek vybrat i objednat.</p></div>
   </div>
-  <div class="step">
+  <div class="step reveal">
    <svg viewBox="0 0 160 110" role="img" aria-label="Tři dárky, prostřední vybraný"><defs><g id="gf"><rect x="-11" y="-2" width="22" height="16" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><rect x="-13" y="-8" width="26" height="7" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><line x1="0" y1="-8" x2="0" y2="14" stroke="#c2255c" stroke-width="3"/><path d="M0-8C-8-18-14-8 0-8 14-8 8-18 0-8z" fill="none" stroke="#c2255c" stroke-width="2.5"/></g></defs><rect x="14" y="38" width="38" height="56" rx="8" fill="#fbfaf8" stroke="#c9ced8" stroke-width="2.5"/><rect x="108" y="38" width="38" height="56" rx="8" fill="#fbfaf8" stroke="#c9ced8" stroke-width="2.5"/><rect x="61" y="34" width="38" height="60" rx="8" fill="#e3f2f1" stroke="#0f6b6b" stroke-width="3"/><use href="#gf" x="33" y="66"/><use href="#gf" x="80" y="66"/><use href="#gf" x="127" y="66"/><circle cx="80" cy="34" r="11" fill="#0f6b6b"/><path d="M74.5 34l4 4 7-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-   <div><h3>3. Vybereš si dárek</h3><p>Dostaneš tři konkrétní tipy. Vybereš si ten pravý, nebo využiješ možnost zařídit dárek s pomocí služby.</p></div>
+   <div><h3>3. Vybereš si dárek</h3><p>Dostaneš tři konkrétní tipy. Vybíráš ty, kdy chceš a bez závazku. Chceš-li, dárek za tebe zařídím.</p></div>
   </div>
  </div>
 </div>
@@ -245,7 +393,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
    <li><i>2</i><span><b>Co ji potěší.</b> Zájmy, styl, rozpočet. Právě tady vznikají trefné tipy.</span></li>
   </ul>
  </div>
- <div class="formcard" id="formcard">
+ <div class="reveal formcard" id="formcard">
   <form id="f" novalidate>
    <div class="stepper" aria-hidden="true"><span id="s1b" class="on">1 · Základ</span><span id="s2b">2 · Co ji potěší</span></div>
 
@@ -273,7 +421,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
      <label id="jina-wrap" hidden>Jaká příležitost to je?<input name="o1_typ_jina" maxlength="80" placeholder="např. Vánoce, Valentýn, výročí seznámení"></label>
     </div>
     <div class="actions"><button class="btn" type="button" id="next">Pokračovat: co ji potěší →</button></div>
-    <p class="small" style="margin:0">Zdarma pro prvních 1 000 členů, až dvě osoby na jeden e-mail.</p>
+    <p class="small" style="margin:0">Zdarma pro prvních 200 členů, až dvě osoby na jeden e-mail.</p>
    </div>
 
    <div class="panel" id="step2" hidden>
@@ -287,8 +435,8 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
     <label>Ještě něco, co bych měla vědět?<textarea name="o1_poznamka" rows="3" maxlength="500" placeholder="Např. její oblíbená značka, co si už dlouho přeje, co už má, kam ráda chodí nebo na co společně vzpomínáte"></textarea></label>
     <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label class="check"><input type="checkbox" name="gdpr" required><span>Souhlasím se <a href="zasady.html">zpracováním osobních údajů</a> (včetně města, kde bydlíte) a s tím, že mi budete posílat připomínky. Odhlásit se můžu kdykoli odkazem v e-mailu.</span></label>
-    <div class="actions"><button class="btn" type="submit" id="send">Chci připomínky s tipy zdarma</button><button class="back" type="button" id="back">← Zpět</button></div>
-    <p class="small" style="margin:0">Zdarma pro prvních 1 000 členů, až dvě osoby na jeden e-mail. Na oplátku budu ráda za zpětnou vazbu.</p>
+    <div class="actions"><button class="btn" type="submit" id="send">Chci tipy na dárky zdarma</button><button class="back" type="button" id="back">← Zpět</button></div>
+    <p class="small" style="margin:0">Zdarma pro prvních 200 členů, až dvě osoby na jeden e-mail. Na oplátku budu ráda za zpětnou vazbu.</p>
    </div>
    <div id="msg" role="status"></div>
   </form>
@@ -310,53 +458,40 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
  <h2>Ty ji znáš. Já ti pomůžu s výběrem.</h2>
  <p class="lead" style="margin-bottom:32px">Čím víc o ní napíšeš, tím trefnější tipy dostaneš. Stačí pár základních informací, zbytek je dobrovolný.</p>
  <div class="trust">
-  <div><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="10" x2="34" y2="10"/><line x1="6" y1="20" x2="34" y2="20"/><line x1="6" y1="30" x2="34" y2="30"/></g><g fill="#fff" stroke="#c2255c" stroke-width="2.5"><circle cx="24" cy="10" r="4"/><circle cx="14" cy="20" r="4"/><circle cx="26" cy="30" r="4"/></g></svg><h3>Vyplníš jen to, co chceš</h3><p>Zájmy, oblíbené činnosti, styl nebo věci, které nesnáší. Každý detail pomůže při výběru.</p></div>
-  <div><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 18v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"/><rect x="8" y="18" width="24" height="17" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><circle cx="20" cy="26" r="2.6" fill="#0f6b6b"/></svg><h3>Víš, k čemu údaje slouží</h3><p>Používám je jen k připomínkám a přípravě tipů na dárky. Víc najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p></div>
-  <div><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="30" height="22" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><path d="M6.5 11.5l13.5 11 13.5-11" fill="none" stroke="#0f6b6b" stroke-width="2.5" stroke-linejoin="round"/></svg><h3>E-maily máš pod kontrolou</h3><p>Odhlásit se můžeš kdykoli odkazem v e-mailu, nebo zrušit účet.</p></div>
+  <div class="reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="10" x2="34" y2="10"/><line x1="6" y1="20" x2="34" y2="20"/><line x1="6" y1="30" x2="34" y2="30"/></g><g fill="#fff" stroke="#c2255c" stroke-width="2.5"><circle cx="24" cy="10" r="4"/><circle cx="14" cy="20" r="4"/><circle cx="26" cy="30" r="4"/></g></svg><h3>Vyplníš jen to, co chceš</h3><p>Zájmy, oblíbené činnosti, styl nebo věci, které nesnáší. Každý detail pomůže při výběru.</p></div>
+  <div class="reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 18v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"/><rect x="8" y="18" width="24" height="17" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><circle cx="20" cy="26" r="2.6" fill="#0f6b6b"/></svg><h3>Víš, k čemu údaje slouží</h3><p>Používám je jen k připomínkám a přípravě tipů na dárky. Víc najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p></div>
+  <div class="reveal"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="30" height="22" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><path d="M6.5 11.5l13.5 11 13.5-11" fill="none" stroke="#0f6b6b" stroke-width="2.5" stroke-linejoin="round"/></svg><h3>E-maily máš pod kontrolou</h3><p>Odhlásit se můžeš kdykoli odkazem v e-mailu, nebo zrušit účet.</p></div>
  </div>
 </div>
 </section>
 
-<section class="white">
+<section class="white" id="faq">
 <div class="wrap">
  <h2 style="margin-bottom:28px">Časté otázky</h2>
  <div class="faq">
-  <details open><summary>Opravdu je to zdarma?</summary><p>Ano, pro prvních 1 000 členů. Zapsat můžeš až dvě osoby pod jedním e-mailem. Kartu nepotřebuješ. Na oplátku budu ráda za zpětnou vazbu.</p></details>
-  <details><summary>Proč se ptáte, kde bydlím?</summary><p>Aby tipy dávaly smysl. Divadlo, wellness nebo večeře se liší podle místa. Stačí nejbližší větší město, adresu nechci.</p></details>
-  <details><summary>Kdy mi e-mail přijde?</summary><p>Tři týdny před datem, které zadáš. Máš tak čas dárek vybrat, objednat i zařídit.</p></details>
-  <details><summary>Co když nechci nic řešit?</summary><p>Odpověz na e-mail číslem tipu a zařídím to za tebe. Zatím domluvou, bez povinnosti.</p></details>
-  <details><summary>Jak se odhlásím?</summary><p>V každém e-mailu je odkaz „Odhlásit odběr“. Účet můžeš zrušit i na požádání a údaje smažu.</p></details>
-  <details><summary>Co děláte s mými údaji?</summary><p>Používám je jen k připomínkám a přípravě tipů. Podrobnosti najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p></details>
- </div>
-</div>
-</section>
-
-<section>
-<div class="wrap">
- <div class="about" id="aboutbox">
-  <div class="aphoto"><img src="tereza.jpg" alt="Tereza, zakladatelka služby Nezapomeň" onerror="this.parentNode.remove();document.getElementById('aboutbox').classList.add('nophoto')"></div>
-  <div>
-   <h2>Ahoj, jsem Tereza</h2>
-   <p>Nezapomeň vzniklo v roce 2026 s jednoduchým cílem: <strong>ušetřit mužům čas a starosti s výběrem dárků.</strong></p>
-   <p>Vím, že ne každého baví vybírat dárky a má na to čas. A nikdo nechce darovat něco, co skončí zapomenuté ve skříni. Proto jsem tady já. Připomenu ti důležité datum a pošlu tipy na dárky, které by ji mohly potěšit. Ty si jen vybereš a objednáš. Ušetříš čas a ona dostane dárek, který jí udělá radost.</p>
-   <p><a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a> · <a href="o-mne.html"><strong>Víc o mně →</strong></a></p>
-   <p class="sign">Tereza</p>
-  </div>
+  <details class="reveal" open><summary>Pro koho je Nezapomeň?</summary><p>Pro muže, kteří chtějí udělat radost ženě ve svém životě: partnerce, manželce, mamince, dceři nebo kamarádce. Tipy na dárky jsou proto vybrané pro ženy. Pokud bude zájem i od žen, službu rozšířím.</p></details>
+  <details class="reveal"><summary>Opravdu je to zdarma?</summary><p>Ano, pro prvních 200 členů. Zapsat můžeš až dvě osoby pod jedním e-mailem. Kartu nepotřebuješ. Na oplátku budu ráda za zpětnou vazbu.</p></details>
+  <details class="reveal"><summary>Proč se ptáte, kde bydlím?</summary><p>Aby tipy dávaly smysl. Divadlo, wellness nebo večeře se liší podle místa. Stačí nejbližší větší město, adresu nechci.</p></details>
+  <details class="reveal"><summary>Kdy mi e-mail přijde?</summary><p>Tři týdny před datem, které zadáš. Máš tak čas dárek vybrat, objednat i zařídit.</p></details>
+  <details class="reveal"><summary>Co když vybírám dárek na poslední chvíli?</summary><p>I tak ti tipy přijdou. Když zbývá méně než tři týdny, pošlu ti je hned po registraci. Vybírám pak dárky, které stihneš: poukaz, vstupenky, zážitek nebo masáž. Když je datum úplně za dveřmi, tipy dostaneš ještě týž den.</p></details>
+  <details class="reveal"><summary>Co když nechci nic řešit?</summary><p>Odpověz na e-mail číslem tipu a zařídím to za tebe. Zatím domluvou, bez povinnosti.</p></details>
+  <details class="reveal"><summary>Jak se odhlásím?</summary><p>V každém e-mailu je odkaz „Odhlásit odběr“. Účet můžeš zrušit i na požádání a údaje smažu.</p></details>
+  <details class="reveal"><summary>Co děláte s mými údaji?</summary><p>Používám je jen k připomínkám a přípravě tipů. Podrobnosti najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p></details>
  </div>
 </div>
 </section>
 
 <div class="wrap" style="padding-bottom:64px">
- <div class="final dark">
+ <div class="reveal final dark">
   <h2>Letos ho nezapomeneš</h2>
   <p>Zadáš datum, kde bydlíte a co má ráda. Zbytek ti připomenu a navrhnu.</p>
-  <a class="btn" href="#registrace">Chci připomínky s tipy zdarma</a>
+  <a class="btn" href="#registrace">Chci tipy na dárky zdarma</a>
  </div>
 </div>
 
-<footer>© Nezapomeň · <a href="o-mne.html">O mně</a> · <a href="zasady.html">Ochrana osobních údajů</a></footer>
+<footer>© Nezapomeň · <a href="o-mne.html">O mně</a> · <a href="zasady.html">Ochrana osobních údajů</a> · <a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a></footer>
 
-<div class="floatcta" id="fcta"><a class="btn" href="#registrace">Chci připomínky s tipy zdarma</a></div>
+<div class="floatcta" id="fcta"><a class="btn" href="#registrace">Chci tipy na dárky zdarma</a></div>
 
 <script src="config.js"></script>
 <script>
@@ -457,6 +592,98 @@ f.addEventListener('submit', async e => {
   f.hidden = true; thanks.hidden = false;
   document.getElementById('registrace').scrollIntoView({block:'start'});
 });
+
+// ===== pohyb a interakce =====
+document.documentElement.classList.add('js');
+const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+// konfety v úvodu
+(function(){
+  const box = document.getElementById('confetti'); if (!box || RM) return;
+  const col = ['#ffd666','#ff8db0','#9be0dc','#ffffff','#e0457b'];
+  for (let i = 0; i < 16; i++) {
+    const e = document.createElement('i');
+    e.style.left = (6 + Math.random() * 88) + '%';
+    e.style.background = col[i % col.length];
+    e.style.setProperty('--d', (6 + Math.random() * 5).toFixed(1) + 's');
+    e.style.setProperty('--w', (-Math.random() * 9).toFixed(1) + 's');
+    box.appendChild(e);
+  }
+})();
+// vstupy při posunu
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || RM) { els.forEach(e => e.classList.add('in')); return; }
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), {threshold:.12});
+  els.forEach((e, i) => { e.style.transitionDelay = ((i % 3) * 80) + 'ms'; io.observe(e); });
+})();
+// karusel
+(function(){
+  const sc = document.getElementById('cscroll'); if (!sc) return;
+  const cards = [...sc.children], dots = document.getElementById('cdots');
+  cards.forEach(() => dots.appendChild(document.createElement('i')));
+  const step = () => cards[0].getBoundingClientRect().width + 18;
+  const idx = () => Math.min(cards.length - 1, Math.round(sc.scrollLeft / step()));
+  const mark = () => [...dots.children].forEach((d, i) => d.classList.toggle('on', i === idx()));
+  sc.addEventListener('scroll', mark, {passive:true}); mark();
+  let timer = null, stopped = RM;
+  const next = () => { const end = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 8; sc.scrollTo({left: end ? 0 : sc.scrollLeft + step(), behavior:'smooth'}); };
+  const start = () => { if (!stopped && !timer) timer = setInterval(next, 4200); };
+  const pause = () => { clearInterval(timer); timer = null; };
+  const stop = () => { stopped = true; pause(); };
+  document.getElementById('cprev').addEventListener('click', () => { stop(); sc.scrollBy({left:-step(), behavior:'smooth'}); });
+  document.getElementById('cnext').addEventListener('click', () => { stop(); next(); });
+  sc.addEventListener('pointerdown', stop); sc.addEventListener('wheel', stop, {passive:true}); sc.addEventListener('keydown', stop);
+  sc.addEventListener('mouseenter', pause); sc.addEventListener('mouseleave', start);
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => es[0].isIntersecting ? start() : pause(), {threshold:.3}).observe(sc); else start();
+})();
+// interaktivní ukázka e-mailu
+(function(){
+  const box = document.getElementById('tips'), picks = document.getElementById('picks'); if (!box || !picks) return;
+  const IC = {
+    leaf:'<path d="M22 8c5 5 6 12 0 22-6-10-5-17 0-22z" fill="#0f6b6b"/><path d="M11 17c6 1 11 6 11 13-7 0-12-5-11-13z" fill="#3d9a98"/><path d="M33 17c-6 1-11 6-11 13 7 0 12-5 11-13z" fill="#3d9a98"/>',
+    glass:'<path d="M13 8h18v8a9 9 0 0 1-18 0z" fill="#c2255c"/><path d="M22 25v10M16 36h12" stroke="#c2255c" stroke-width="2.5" stroke-linecap="round"/>',
+    flower:'<g fill="#e88aa8"><circle cx="22" cy="12" r="6"/><circle cx="32" cy="19" r="6"/><circle cx="28" cy="31" r="6"/><circle cx="16" cy="31" r="6"/><circle cx="12" cy="19" r="6"/></g><circle cx="22" cy="23" r="5" fill="#f6c453"/>',
+    ticket:'<path d="M5 13h34v6a3 3 0 0 0 0 6v6H5v-6a3 3 0 0 0 0-6z" fill="#7a5bd0"/><path d="M26 14v16" stroke="#fff" stroke-width="2" stroke-dasharray="2 3"/>',
+    plane:'<path d="M6 24l32-14-8 24-8-8-6 6v-9z" fill="#0f6b6b"/>',
+    jar:'<rect x="12" y="16" width="20" height="20" rx="5" fill="#e88aa8"/><rect x="14" y="9" width="16" height="7" rx="2" fill="#c2255c"/>',
+    peak:'<path d="M4 36l13-22 8 12 5-7 10 17z" fill="#0f6b6b"/><circle cx="32" cy="12" r="4" fill="#f6c453"/>',
+    bag:'<path d="M10 16h24l2 20H8z" fill="#7a5bd0"/><path d="M16 16v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"/>',
+    book:'<path d="M22 12c-4-3-10-3-14-1v22c4-2 10-2 14 1 4-3 10-3 14-1V11c-4-2-10-2-14 1z" fill="#fff" stroke="#1c2233" stroke-width="2.5" stroke-linejoin="round"/><path d="M22 12v22" stroke="#1c2233" stroke-width="2.5"/>'
+  };
+  const BG = {jar:'#f6dde6', peak:'#d8ecf2', bag:'#e6e0f5', leaf:'#cfe3e1', glass:'#f1cdd5', flower:'#f6e6bf', ticket:'#e6e0f5', plane:'#d8ecf2', book:'#e3ecf7'};
+  const D = {
+    wellness:[['Wellness víkend pro dva','Společný čas a odpočinek v příjemném hotelu.','od 4 000 Kč','leaf','wellness'],['Degustace vín ve sklípku','Odpoledne mezi vinicemi a večeře ve sklípku.','od 1 500 Kč','glass','vino'],['Relaxační masáž','Hodina klidu a rozmazlování jen pro ni.','od 800 Kč','leaf','wellness']],
+    cestovani:[['Víkendový pobyt v zahraničí','Dva dny v novém městě, ubytování i program.','od 6 000 Kč','plane','cestovani'],['Výlet vlakem s piknikem','Jednodenní dobrodružství bez stresu.','od 800 Kč','plane','cestovani'],['Magnetická mapa světa','Na ni si poznačíte místa, kam společně dojedete.','od 500 Kč','book','cestovani']],
+    kultura:[['Koncert, na který se těší','Zážitek, který nepotřebuje balicí papír.','od 1 200 Kč','ticket','hudba'],['Vstupenky do divadla','Večer ve dvou s večeří před představením.','od 900 Kč','ticket','divadlo'],['Kniha, kterou si přeje','Osobní věnování uvnitř.','od 400 Kč','book','knihy']],
+    pece:[['Kosmetické ošetření v salonu','Hodina péče jen pro ni: pleť, nehty nebo vlasy.','od 1 500 Kč','jar','pece'],['Kosmetický balíček','Pleť, vlasy nebo tělo podle toho, co používá.','od 900 Kč','jar','pece'],['Voucher na nákup','Vybere si sama, ty jen potěšíš.','od 500 Kč','bag','poukaz']],
+    dobrodruzstvi:[['Adrenalinový zážitek','Skok, jízda nebo let, na který nezapomene.','od 2 000 Kč','peak','dobrodruzstvi'],['Výlet s přespáním v horách','Chata, výhledy a večer bez signálu.','od 1 500 Kč','peak','priroda'],['Únikovka nebo lanové centrum','Zábava pro dva, která zabere jedno odpoledne.','od 600 Kč','peak','zazitek']]
+  };
+  const html = k => D[k].map((t, i) => '<div class="tip"><span class="ph" style="background:' + BG[t[3]] + '"><svg viewBox="0 0 44 44" aria-hidden="true">' + IC[t[3]] + '</svg><img src="img/kategorie/' + t[4] + '.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP ' + (i + 1) + '</span><b>' + t[0] + '</b><span class="tip-d">' + t[1] + '</span><span class="tip-p">' + t[2] + ' · <span class="tip-l">Zobrazit tip →</span></span></div></div>').join('');
+  box.innerHTML = html('wellness');
+  picks.addEventListener('click', e => {
+    const b = e.target.closest('.pk'); if (!b || b.classList.contains('on')) return;
+    picks.querySelectorAll('.pk').forEach(x => x.classList.toggle('on', x === b));
+    if (RM) { box.innerHTML = html(b.dataset.k); return; }
+    box.classList.add('swap');
+    setTimeout(() => { box.innerHTML = html(b.dataset.k); box.classList.remove('swap'); }, 220);
+  });
+})();
+
+// horní lišta: mobilní menu a zvýraznění sekce
+(function(){
+  const btn = document.getElementById('navbtn'), menu = document.getElementById('menu'); if (!btn) return;
+  const close = () => { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
+  btn.addEventListener('click', () => { const o = menu.classList.toggle('open'); btn.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+  menu.addEventListener('click', e => { if (e.target.closest('a')) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  if (!('IntersectionObserver' in window)) return;
+  const map = {registrace:'#registrace', jak:'#jak', faq:'#faq'};
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (!en.isIntersecting) return;
+    menu.querySelectorAll('a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === map[en.target.id]));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+})();
 </script>
 </body>
 </html>
