@@ -191,6 +191,13 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 .herophoto{height:460px;border:1px solid rgba(255,214,102,.5);border-radius:28px;overflow:hidden}.herophoto img{border-radius:0}
 /* pás kategorií */
 .usp-wrap{background:#0f1420;border-top:1px solid rgba(255,255,255,.08)}
+.benefits{list-style:none;margin:0;padding:26px 0;display:grid;grid-template-columns:repeat(5,1fr);gap:18px 22px}
+.benefits li{display:flex;gap:12px;align-items:flex-start}
+.benefits svg{width:26px;height:26px;flex:0 0 26px;margin-top:2px}
+.benefits b{display:block;color:#fff;font-size:1rem;line-height:1.25}
+.benefits small{display:block;color:#aab3c7;font-size:.88rem;line-height:1.45;margin-top:4px}
+@media(max-width:900px){.benefits{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.benefits{grid-template-columns:1fr;padding:22px 0;gap:16px}}
 .marquee{background:#0f1420;overflow:hidden;padding:4px 0 26px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .mtrack{display:flex;width:max-content;animation:mq 46s linear infinite}
 .marquee:hover .mtrack{animation-play-state:paused}
@@ -310,15 +317,14 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 </div>
 
 <div class="dark usp-wrap"><div class="wrap">
- <div class="usp">
-  <span><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="5" width="22" height="16" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 7l10 8 10-8" fill="none" stroke="#ffd666" stroke-width="2"/></svg>E-mail 21 dní předem</span>
-  <span><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 3l3 7 7 .6-5.3 4.6 1.7 7L13 18.5 6.6 22.2l1.7-7L3 10.6 10 10z" fill="#ffd666"/></svg>3 konkrétní tipy</span>
-  <span><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2a8 8 0 0 0-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 0 0-8-8z" fill="none" stroke="#fff" stroke-width="2"/><circle cx="13" cy="10" r="3" fill="#ffd666"/></svg>Podle místa, kde bydlíte</span>
-  <span><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="5" y="11" width="16" height="12" rx="2" fill="none" stroke="#fff" stroke-width="2"/><path d="M9 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#ffd666" stroke-width="2"/></svg>Odhlášení kdykoli</span>
- </div>
+ <ul class="benefits" aria-label="Co z toho máš">
+  <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="#ffd666" stroke-width="2"/><path d="M8 13.5l3.5 3.5L18 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Ušetříš čas</b><small>Nemusíš procházet desítky e-shopů.</small></span></li>
+  <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="#ffd666" stroke-width="2"/><path d="M8 13.5l3.5 3.5L18 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Nebudeš vymýšlet</b><small>Dostaneš konkrétní návrhy.</small></span></li>
+  <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="#ffd666" stroke-width="2"/><path d="M8 13.5l3.5 3.5L18 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Nevybereš špatně</b><small>Tipy odpovídají tomu, co má ráda.</small></span></li>
+  <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="#ffd666" stroke-width="2"/><path d="M8 13.5l3.5 3.5L18 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Nezapomeneš na datum</b><small>Nemusíš nic hlídat v kalendáři.</small></span></li>
+  <li><svg viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="#ffd666" stroke-width="2"/><path d="M8 13.5l3.5 3.5L18 10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Máš to pod kontrolou</b><small>Vybíráš ty, kdy chceš. Bez závazku.</small></span></li>
+ </ul>
 </div></div>
-
-<div class="marquee" aria-label="Kategorie dárků"><div class="mtrack"><ul><li>Wellness</li><li>Víno a gastro</li><li>Koncerty</li><li>Divadlo</li><li>Restaurace</li><li>Květiny</li><li>Cestování</li><li>Online poukazy</li><li>Šperky</li><li>Knihy</li><li>Zážitky</li><li>Sport</li><li>Káva a čaj</li><li>Umění</li></ul><ul aria-hidden="true"><li>Wellness</li><li>Víno a gastro</li><li>Koncerty</li><li>Divadlo</li><li>Restaurace</li><li>Květiny</li><li>Cestování</li><li>Online poukazy</li><li>Šperky</li><li>Knihy</li><li>Zážitky</li><li>Sport</li><li>Káva a čaj</li><li>Umění</li></ul></div></div>
 
 <section class="csec">
 <div class="wrap chead reveal">
@@ -370,7 +376,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
  <div class="steps">
   <div class="step reveal">
    <svg viewBox="0 0 160 110" role="img" aria-label="Kalendář s označeným datem"><rect x="38" y="16" width="84" height="80" rx="10" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M38 38V26a10 10 0 0 1 10-10h64a10 10 0 0 1 10 10v12z" fill="#0f6b6b"/><line x1="58" y1="9" x2="58" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><line x1="102" y1="9" x2="102" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><g fill="#c9ced8"><circle cx="54" cy="52" r="3"/><circle cx="72" cy="52" r="3"/><circle cx="90" cy="52" r="3"/><circle cx="108" cy="52" r="3"/><circle cx="54" cy="68" r="3"/><circle cx="72" cy="68" r="3"/><circle cx="108" cy="68" r="3"/><circle cx="54" cy="84" r="3"/><circle cx="72" cy="84" r="3"/><circle cx="90" cy="84" r="3"/></g><circle cx="90" cy="68" r="10" fill="#c2255c"/><path d="M90 73.5l-4.6-4.4a2.9 2.9 0 0 1 4.6-3.3 2.9 2.9 0 0 1 4.6 3.3z" fill="#fff"/></svg>
-   <div><h3>1. Nastavíš důležité datum</h3><p>Zadáš, komu chceš udělat radost, kdy slaví a co má ráda.</p></div>
+   <div><h3>1. Nastavíš důležité datum</h3><p>Zadáš, komu chceš udělat radost, kdy slaví, co má ráda a z jakého jsi města, abych našla tipy v dosahu.</p></div>
   </div>
   <div class="step reveal">
    <svg viewBox="0 0 160 110" role="img" aria-label="Obálka s odznakem 21 dní"><rect x="26" y="34" width="104" height="62" rx="8" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M28 38l50 34 50-34" fill="none" stroke="#1c2233" stroke-width="3" stroke-linejoin="round"/><circle cx="124" cy="32" r="18" fill="#c2255c"/><text x="124" y="33" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">21</text><text x="124" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="600" fill="#fff">dní</text></svg>
