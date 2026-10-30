@@ -302,7 +302,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
   <img src="foto/hero.jpg" alt="" onerror="this.remove()">
   <span class="chip c1">21 dní předem</span>
   <span class="chip c2">3 tipy na dárek</span>
-  <span class="chip c3">Tipy z Tvého okolí</span>
+  <span class="chip c3">Tipy z okolí: Brno</span>
   <div class="badge">Anežka: narozeniny za 21 dní + 3 tipy</div>
  </div>
 </div>
@@ -483,13 +483,14 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 
 <div class="wrap" style="padding-bottom:64px">
  <div class="reveal final dark">
-  <h2>Letos ho nezapomeneš</h2>
-  <p>Zadáš datum, kde bydlíte a co má ráda. Zbytek ti připomenu a navrhnu.</p>
+  <h2>Letos žádný dárek na poslední chvíli.</h2>
+  <p>Dostaneš včas připomínku a 3 tipy na dárky. Vybereš si, objednáš a máš hotovo.</p>
   <a class="btn" href="#registrace">Chci tipy na dárky zdarma</a>
+  <p class="small" style="margin:14px 0 0;color:#ffd666">Zdarma pro prvních 200 členů</p>
  </div>
 </div>
 
-<footer>© Nezapomeň · <a href="o-mne.html">O mně</a> · <a href="zasady.html">Ochrana osobních údajů</a> · <a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a></footer>
+<footer>© 2026 Nezapomeň · <a href="o-mne.html">O mně</a> · <a href="zasady.html">Ochrana osobních údajů</a> · Kontakt: <a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a></footer>
 
 <div class="floatcta" id="fcta"><a class="btn" href="#registrace">Chci tipy na dárky zdarma</a></div>
 
@@ -543,10 +544,12 @@ s2.addEventListener('input', meter); s2.addEventListener('change', meter);
 
 const fc = document.getElementById('fcta'), reg = document.getElementById('registrace');
 if ('IntersectionObserver' in window) {
-  let heroGone = false, regVisible = false;
-  const upd = () => fc.classList.toggle('show', heroGone && !regVisible);
+  let heroGone = false, regVisible = false, endVisible = false;
+  const upd = () => fc.classList.toggle('show', heroGone && !regVisible && !endVisible);
   new IntersectionObserver(es => { heroGone = !es[0].isIntersecting; upd(); }).observe(document.querySelector('.hero'));
   new IntersectionObserver(es => { regVisible = es[0].isIntersecting; upd(); }, {threshold:.05}).observe(reg);
+  const endBox = document.querySelector('.final');
+  if (endBox) new IntersectionObserver(es => { endVisible = es[0].isIntersecting; upd(); }, {threshold:.05}).observe(endBox);
 }
 
 document.getElementById('again').addEventListener('click', () => {
