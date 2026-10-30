@@ -4,196 +4,427 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nezapomeň – připomínka narozenin a výročí s tipy na dárky</title>
-<meta name="description" content="Tři týdny předem ti pošlu připomínku a 3 tipy na dárek. Zdarma pro prvních 1 000 členů.">
+<meta name="description" content="Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy na dárky podle toho, co má ráda. Zdarma pro prvních 1 000 členů.">
+<meta property="og:title" content="Nezapomeň – připomínka narozenin a výročí s tipy na dárky">
+<meta property="og:description" content="Nemáš čas? Dárek vyberu já. Tři týdny předem připomínka a 3 tipy na dárky. Zdarma pro prvních 1 000 členů.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta name="theme-color" content="#0f6b6b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🎁%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;600&display=swap">
+<link rel="preload" href="fonts/inter-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--ink:#1c2233;--paper:#fbfaf8;--teal:#0f6b6b;--ribbon:#c2255c;--mute:#5d6475;--line:#dfe2e8}
+/* Písma jsou přímo na webu (složka fonts), nic se nenačítá od třetích stran. */
+@font-face{font-family:"Inter Variable";font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/inter-latin-ext-wght-normal.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Inter Variable";font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/inter-latin-wght-normal.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Fraunces Variable";font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/fraunces-latin-ext-wght-normal.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Fraunces Variable";font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/fraunces-latin-wght-normal.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--ink:#1c2233;--paper:#fbfaf8;--teal:#0f6b6b;--tealsoft:#e3f2f1;--band:#eef6f5;--ribbon:#c2255c;--ribbonsoft:#fde8ec;--sun:#fff3d6;--mute:#4f566a;--line:#dfe2e8;--field:#b9bfcc;--gold:#ffd666;
+--serif:"Fraunces Variable",Fraunces,Georgia,serif;--sans:"Inter Variable",Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 *{box-sizing:border-box}
-body{margin:0;font:17px/1.55 Inter,system-ui,sans-serif;color:var(--ink);background:var(--paper)}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
-h1{font-size:clamp(2rem,5.2vw,3.2rem);font-weight:800}
-h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.6 var(--sans);color:var(--ink);background:var(--paper);overflow-x:hidden;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--serif);line-height:1.12;margin:0 0 .5em;text-wrap:balance}
+h1{font-size:clamp(2.5rem,7vw,3.75rem);font-weight:800}
+h2{font-size:clamp(1.85rem,4.4vw,2.4rem);font-weight:600}
+h3{font-size:1.3rem;font-weight:600;line-height:1.2}
+p{margin:0 0 .8em}
 a{color:var(--teal)}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
-header{padding:18px 0}.logo{font-family:Fraunces,Georgia,serif;font-weight:800;font-size:1.3rem;text-decoration:none;color:var(--ink)}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:40px 0 70px}
-.lead{font-size:1.2rem;color:var(--mute);max-width:34em}
-.free-note{margin:12px 0 0;font-size:.9rem;color:var(--mute)}
-.btn{display:inline-block;background:var(--ribbon);color:#fff;border:0;border-radius:8px;padding:14px 26px;font:600 1rem Inter,sans-serif;cursor:pointer;text-decoration:none}
-.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
-.mail{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 12px 40px rgba(28,34,51,.1);transform:rotate(1.2deg)}
-.mail small{color:var(--mute)}.mail ol{padding-left:20px;margin:12px 0}.mail .pill{display:inline-block;border:1px solid var(--ribbon);color:var(--ribbon);border-radius:99px;padding:4px 12px;font-size:.85rem;font-weight:600;margin-right:6px}
-section{padding:56px 0;border-top:1px solid var(--line)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.about{display:grid;grid-template-columns:150px 1fr;gap:32px;align-items:center;max-width:760px}
-.about.nophoto{grid-template-columns:1fr}
-.about img{width:150px;height:150px;border-radius:50%;object-fit:cover;background:#e9ecef}
-.about h2{margin-bottom:.4em}.about p{margin:0 0 .8em;font-size:1.05rem}.sign{font-family:Fraunces,Georgia,serif;font-size:1.3rem;font-weight:600;margin:0}
-.steps p{color:var(--mute);margin:0}
-.safe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.safe-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
-.safe-item svg{display:block;width:40px;height:40px;margin-bottom:10px}
-.safe-item h3{font-size:1.1rem;margin-bottom:.35em}
-.safe-item p{margin:0;color:var(--mute);font-size:.97rem}
-@media(max-width:760px){.safe-grid{grid-template-columns:1fr}}
-.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
-.step svg{display:block;width:100%;max-width:200px;height:auto;margin:0 auto 14px}
-.step h3{font-size:1.15rem;margin-bottom:.4em}
-form{max-width:640px;display:grid;gap:14px}
-label{font-weight:600;font-size:.95rem;display:grid;gap:5px}
-input,select{font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
-fieldset{border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px}
-legend{font-weight:600;padding:0 6px}
-.row{display:grid;grid-template-columns:1.2fr 1fr 70px 1fr;gap:10px}
-.check{display:flex;gap:10px;font-weight:400;font-size:.9rem;color:var(--mute);align-items:flex-start}.check input{width:auto;margin-top:5px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chips label{font-weight:400;display:flex;flex-direction:row;gap:6px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:6px 12px;background:#fff;cursor:pointer;font-size:.9rem}.chips input{width:auto}
-.hint{color:var(--mute);font-size:.9rem;margin:2px 0 8px}
-.pick{max-height:170px;overflow-y:auto;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-textarea{font:inherit;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%;resize:vertical}
-[hidden]{display:none!important}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 0 max(16px,env(safe-area-inset-left))}
+.lead{font-size:1.2rem;color:var(--mute);max-width:30em}
+.muted{color:var(--mute)}
+.small{font-size:.9rem;color:var(--mute)}
+.btn{display:inline-block;background:var(--ribbon);color:#fff;border:0;border-radius:12px;padding:16px 30px;min-height:52px;font:700 1.05rem var(--sans);cursor:pointer;text-decoration:none;text-align:center;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.back:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+section{padding:72px 0}
+.band{background:var(--band)}
+.white{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dark{background:var(--ink);color:#fff}
+.eyebrow{font:700 .8rem var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--teal);margin:0 0 10px}
+header{padding:16px 0 6px}
+.logo{font-family:var(--serif);font-weight:800;font-size:1.05rem;line-height:1.25;text-decoration:none;color:var(--ink);display:block}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:24px 0 72px}
+.hero .lead{margin-bottom:28px}
+.herophoto{position:relative;height:420px;border-radius:24px;background:#cfe3e1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.herophoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.herophoto svg{width:120px;height:100px}
+.badge{position:absolute;left:18px;bottom:18px;background:#fff;border-radius:14px;padding:11px 15px;font-size:.88rem;font-weight:600;box-shadow:0 10px 30px rgba(28,34,51,.18);max-width:calc(100% - 36px)}
+.usp{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 24px;padding:20px 0;font-weight:600;font-size:.97rem}
+.usp span{display:flex;align-items:center;gap:10px}
+.usp svg{width:26px;height:26px;flex:0 0 26px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.mail-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(28,34,51,.12);max-width:500px}
+.mail-head{background:var(--teal);color:#fff;font:800 1.25rem var(--serif);text-align:center;padding:14px}
+.mail-body{padding:18px}
+.mail-subj{display:block;font-size:1.05rem;margin-bottom:6px}
+.mail-text{font-size:.95rem;color:var(--mute);margin:0 0 14px}
+.tip{display:flex;gap:12px;border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:10px}
+.ph{position:relative;flex:0 0 84px;height:96px;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph svg{width:34px;height:34px}
+.tip-n{display:block;font-size:.68rem;letter-spacing:.08em;color:var(--mute)}
+.tip b{display:block;font-size:1rem;line-height:1.25}
+.tip-d{display:block;font-size:.88rem;color:var(--mute);line-height:1.35}
+.tip-p{display:block;font-size:.88rem;font-weight:600;margin-top:4px}
+.tip-l{color:var(--ribbon)}
+.mail-foot{padding:12px;border-radius:10px;background:#f3f4f7;font-size:.92rem;text-align:center}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.step svg{display:block;width:170px;height:auto;margin:0 0 14px}
+.step p{color:var(--mute);margin:0;font-size:1.02rem}
+.formgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.sidelist{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:14px}
+.sidelist li{display:flex;gap:12px;color:var(--mute);font-size:1.02rem}
+.sidelist i{flex:0 0 30px;height:30px;border-radius:99px;background:var(--ribbon);color:#fff;font:700 .9rem var(--sans);display:flex;align-items:center;justify-content:center;font-style:normal}
+.sidelist b{color:var(--ink)}
+.formcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:0 18px 50px rgba(28,34,51,.10);max-width:660px}
+.stepper{display:flex;gap:10px;margin:0 0 22px}
+.stepper span{flex:1;border-radius:99px;padding:9px;text-align:center;font-size:.85rem;font-weight:700;background:#eceef2;color:var(--mute)}
+.stepper span.on{background:var(--teal);color:#fff}
+form{display:grid;gap:16px}
+.panel{display:grid;gap:16px}
+label{font-weight:600;font-size:1rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;font-size:1.05rem;padding:14px;min-height:52px;border:1px solid var(--field);border-radius:12px;background:#fff;width:100%;color:var(--ink)}
+textarea{resize:vertical;min-height:0}
+input:focus,select:focus,textarea:focus{border-color:var(--teal)}
+.bad{border-color:var(--ribbon)!important;background:#fff8fa}
+.keyfield{border:2px solid var(--teal)}
+.grp{border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:14px;background:#fcfcfd}
+.grp>b{font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row.dm{grid-template-columns:1fr 2fr}
+.check{display:flex;gap:12px;font-weight:400;font-size:.92rem;color:var(--mute);align-items:flex-start}
+.check input{width:22px;min-height:22px;height:22px;flex:0 0 22px;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{font-weight:400;display:flex;flex-direction:row;gap:7px;align-items:center;border:1px solid var(--field);border-radius:99px;padding:10px 15px;min-height:44px;background:#fff;cursor:pointer;font-size:.95rem}
+.chips input{width:auto;min-height:0;height:auto;padding:0;accent-color:var(--teal)}
+.chips label:has(input:checked){border-color:var(--teal);background:var(--tealsoft);font-weight:600}
+.hint{color:var(--mute);font-size:.9rem;margin:0}
+.pick{max-height:190px;overflow-y:auto;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.qt{font-size:1.05rem}
+.boost{background:var(--teal);color:#fff;border-radius:16px;padding:18px}
+.boost b{display:block;font:800 1.3rem var(--serif);margin-bottom:4px}
+.boost p{margin:0 0 12px;font-size:.97rem}
+.meter{height:10px;border-radius:99px;background:rgba(255,255,255,.3);overflow:hidden}
+.meter i{display:block;height:100%;width:40%;background:var(--gold);border-radius:99px;transition:width .3s}
+.meter-t{font-size:.88rem;font-weight:600;margin-top:6px}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.back{background:none;border:0;color:var(--mute);font:600 1rem var(--sans);cursor:pointer;text-decoration:underline;padding:10px 4px;min-height:44px}
 .hp{position:absolute;left:-9999px}
-#msg{padding:14px;border-radius:8px;display:none}#msg.ok{display:block;background:#e4f4ee}#msg.err{display:block;background:#fde8ec}
-.trust{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;font-size:.95rem;color:var(--mute)}
-footer{padding:30px 0;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
-@media(max-width:760px){.about{grid-template-columns:1fr}.hero,.steps,.trust{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}.mail{transform:none}}
+[hidden]{display:none!important}
+#msg{padding:14px;border-radius:12px;display:none}#msg.err{display:block;background:var(--ribbonsoft)}
+.thanks{text-align:center;padding:10px 4px}
+.thanks svg{width:150px;height:auto;margin:0 auto 10px;display:block}
+.thanks h3{font-size:2rem;font-weight:800}
+.thanks ol{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 18px 14px 36px;margin:0 0 18px;font-size:.97rem;color:var(--mute)}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.trust svg{width:44px;height:44px;display:block;margin-bottom:12px}
+.trust p{color:var(--mute);margin:0;font-size:1.02rem}
+.faq{max-width:780px;display:grid;gap:12px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:14px}
+.faq summary{cursor:pointer;padding:18px 20px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:14px;min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--teal)}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:0;padding:0 20px 18px;color:var(--mute);font-size:1.02rem}
+.about{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:center;max-width:900px}
+.about.nophoto{grid-template-columns:1fr}
+.aphoto{height:300px;border-radius:24px;background:var(--tealsoft);overflow:hidden}
+.aphoto img{width:100%;height:100%;object-fit:cover;display:block}
+.about h2{margin-bottom:.4em}
+.sign{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin:0}
+.final{border-radius:24px;padding:56px 24px;text-align:center}
+.final h2{color:#fff}.final p{color:#d3d8e4;margin:0 auto 26px;max-width:32em;font-size:1.15rem}
+footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px solid var(--line);text-align:center}
+.floatcta{position:fixed;left:0;right:0;bottom:0;padding:10px max(16px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:rgba(255,255,255,.97);border-top:1px solid var(--line);display:none;z-index:20;transform:translateY(110%);transition:transform .25s}
+.floatcta.show{transform:none}
+.floatcta .btn{display:block;width:100%}
+@media(max-width:900px){
+ .hero,.split,.formgrid,.about{grid-template-columns:1fr;gap:32px}
+ .herophoto{height:230px}
+ .steps,.trust{grid-template-columns:1fr;gap:26px}
+ .usp{grid-template-columns:1fr 1fr}
+ .step{display:flex;gap:16px;align-items:center}
+ .step svg{width:92px;flex:0 0 92px;margin:0}
+ .about{max-width:none}.aphoto{height:220px;max-width:220px}
+}
+@media(max-width:760px){
+ section{padding:46px 0}
+ .hero{padding:12px 0 36px}
+ .hero .btn{display:block;width:100%;min-height:56px;font-size:1.1rem}
+ .formcard{padding:18px}
+ .floatcta{display:block}
+ footer{padding-bottom:96px}
+ .final{padding:34px 18px}
+}
+@media(max-width:430px){.row{grid-template-columns:1fr}.row.dm{grid-template-columns:1fr 2fr}.usp{font-size:.88rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
+
+<div class="band">
 <div class="wrap">
 <header><a class="logo" href="#">Nezapomeň – připomínka narozenin a výročí s tipy na dárky</a></header>
- 
 <div class="hero">
  <div>
-  <h1>Nemáš čas?<br>Dárek vyberu já.<br></h1>
+  <h1>Nemáš čas?<br>Dárek vyberu já.</h1>
   <p class="lead">Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy na dárky podle toho, co má ráda. Ty si jen vybereš.</p>
   <a class="btn" href="#registrace">Chci připomínky s tipy zdarma</a>
-  <p class="free-note">Zdarma pro prvních 1 000 členů.</p>
+  <p class="small" style="margin-top:14px">Zdarma pro prvních 1 000 členů · bez platební karty</p>
  </div>
- <div class="mail" aria-label="Ukázka e-mailu">
-  <small>Od: Nezapomeň · Předmět:</small><br><strong>Anežka: narozeniny za 21 dní + 3 tipy</strong>
-  <ol><li>Víkend pro dva ve wellness hotelu.</li><li>Lístky na koncert nebo divadlo, které má ráda.</li><li>Kytice a její oblíbená kniha.</li></ol>
-  <span class="pill">Koupím sám</span><span class="pill">Zařiď to za mě</span>
+ <div class="herophoto" aria-hidden="true">
+  <svg viewBox="0 0 120 100"><rect x="22" y="44" width="76" height="48" rx="8" fill="#fff" stroke="#0f6b6b" stroke-width="4"/><rect x="16" y="32" width="88" height="16" rx="6" fill="#fff" stroke="#0f6b6b" stroke-width="4"/><line x1="60" y1="32" x2="60" y2="92" stroke="#c2255c" stroke-width="6"/><path d="M60 32C44 10 26 30 60 32 94 30 76 10 60 32z" fill="none" stroke="#c2255c" stroke-width="5"/></svg>
+  <img src="foto/hero.jpg" alt="" onerror="this.remove()">
+  <div class="badge">Anežka: narozeniny za 21 dní + 3 tipy</div>
  </div>
 </div>
+</div>
+</div>
+
+<div class="dark"><div class="wrap">
+ <div class="usp">
+  <span><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="5" width="22" height="16" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M3 7l10 8 10-8" fill="none" stroke="#ffd666" stroke-width="2"/></svg>E-mail 21 dní předem</span>
+  <span><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 3l3 7 7 .6-5.3 4.6 1.7 7L13 18.5 6.6 22.2l1.7-7L3 10.6 10 10z" fill="#ffd666"/></svg>3 konkrétní tipy</span>
+  <span><svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2a8 8 0 0 0-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 0 0-8-8z" fill="none" stroke="#fff" stroke-width="2"/><circle cx="13" cy="10" r="3" fill="#ffd666"/></svg>Podle místa, kde bydlíte</span>
+  <span><svg viewBox="0 0 26 26" aria-hidden="true"><rect x="5" y="11" width="16" height="12" rx="2" fill="none" stroke="#fff" stroke-width="2"/><path d="M9 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#ffd666" stroke-width="2"/></svg>Odhlášení kdykoli</span>
+ </div>
+</div></div>
 
 <section>
- <h2>Jak to funguje</h2>
- <p class="lead" style="margin-bottom:28px">Tři jednoduché kroky. Žádná práce navíc.</p>
- <div class="steps">
-  <div class="step">
-   <svg viewBox="0 0 160 110" aria-hidden="true"><rect x="38" y="16" width="84" height="80" rx="10" fill="#fff" stroke="#1c2233" stroke-width="3"/><path d="M38 38V26a10 10 0 0 1 10-10h64a10 10 0 0 1 10 10v12z" fill="#0f6b6b"/><line x1="58" y1="9" x2="58" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><line x1="102" y1="9" x2="102" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><g fill="#c9ced8"><circle cx="54" cy="52" r="3"/><circle cx="72" cy="52" r="3"/><circle cx="90" cy="52" r="3"/><circle cx="108" cy="52" r="3"/><circle cx="54" cy="68" r="3"/><circle cx="72" cy="68" r="3"/><circle cx="108" cy="68" r="3"/><circle cx="54" cy="84" r="3"/><circle cx="72" cy="84" r="3"/><circle cx="90" cy="84" r="3"/></g><circle cx="90" cy="68" r="10" fill="#c2255c"/><path d="M90 73.5l-4.6-4.4a2.9 2.9 0 0 1 4.6-3.3 2.9 2.9 0 0 1 4.6 3.3z" fill="#fff"/></svg>
-   <h3>1. Nastavíš důležité datum</h3>
-   <p>Zadáš, komu chceš udělat radost, kdy slaví a co má ráda.</p>
-  </div>
-  <div class="step">
-   <svg viewBox="0 0 160 110" aria-hidden="true"><rect x="26" y="34" width="104" height="62" rx="8" fill="#fff" stroke="#1c2233" stroke-width="3"/><path d="M28 38l50 34 50-34" fill="none" stroke="#1c2233" stroke-width="3" stroke-linejoin="round"/><circle cx="124" cy="32" r="18" fill="#c2255c"/><text x="124" y="33" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">21</text><text x="124" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="600" fill="#fff">dní</text></svg>
-   <h3>2. Připomenu ti ho včas</h3>
-   <p>Tři týdny předem dostaneš e-mail, abys měl čas dárek vybrat i objednat.</p>
-  </div>
-  <div class="step">
-   <svg viewBox="0 0 160 110" aria-hidden="true"><defs><g id="gf"><rect x="-11" y="-2" width="22" height="16" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><rect x="-13" y="-8" width="26" height="7" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><line x1="0" y1="-8" x2="0" y2="14" stroke="#c2255c" stroke-width="3"/><path d="M0-8C-8-18-14-8 0-8 14-8 8-18 0-8z" fill="none" stroke="#c2255c" stroke-width="2.5"/></g></defs><rect x="14" y="38" width="38" height="56" rx="8" fill="#fff" stroke="#c9ced8" stroke-width="2.5"/><rect x="108" y="38" width="38" height="56" rx="8" fill="#fff" stroke="#c9ced8" stroke-width="2.5"/><rect x="61" y="34" width="38" height="60" rx="8" fill="#e3f2f1" stroke="#0f6b6b" stroke-width="3"/><use href="#gf" x="33" y="66"/><use href="#gf" x="80" y="66"/><use href="#gf" x="127" y="66"/><circle cx="80" cy="34" r="11" fill="#0f6b6b"/><path d="M74.5 34l4 4 7-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-   <h3>3. Vybereš si dárek</h3>
-   <p>Dostaneš tři konkrétní tipy. Vybereš si ten pravý, nebo využiješ možnost zařídit dárek s pomocí služby.</p>
+<div class="wrap split">
+ <div>
+  <p class="eyebrow">Takový e-mail ti přijde</p>
+  <h2>Tři konkrétní tipy, ne obecné rady</h2>
+  <p class="lead">U každého tipu uvidíš název, jednu větu proč se hodí, orientační cenu a odkaz. Vybereš a objednáš.</p>
+  <p class="small">Ukázka. Skutečné tipy vyberu podle toho, co o ní napíšeš, a podle místa, kde bydlíte.</p>
+ </div>
+ <div class="mail-card" aria-label="Ukázka e-mailu">
+  <div class="mail-head">Nezapomeň</div>
+  <div class="mail-body">
+   <strong class="mail-subj">Anežka: narozeniny za 21 dní + 3 tipy</strong>
+   <p class="mail-text">Máš ještě 21 dní. Tipy z okolí: Brno.</p>
+   <div class="tip"><span class="ph" style="background:#cfe3e1"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 8c5 5 6 12 0 22-6-10-5-17 0-22z" fill="#0f6b6b"/><path d="M11 17c6 1 11 6 11 13-7 0-12-5-11-13z" fill="#3d9a98"/><path d="M33 17c-6 1-11 6-11 13 7 0 12-5 11-13z" fill="#3d9a98"/></svg><img src="foto/tip-wellness.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 1</span><b>Wellness víkend pro dva</b><span class="tip-d">Společný čas a odpočinek v příjemném hotelu.</span><span class="tip-p">od 3 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
+   <div class="tip"><span class="ph" style="background:#f1cdd5"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M13 8h18v8a9 9 0 0 1-18 0z" fill="#c2255c"/><path d="M22 25v10M16 36h12" stroke="#c2255c" stroke-width="2.5" stroke-linecap="round"/></svg><img src="foto/tip-vino.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 2</span><b>Degustace vín na jižní Moravě</b><span class="tip-d">Odpoledne mezi vinicemi a večeře ve sklípku.</span><span class="tip-p">od 1 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
+   <div class="tip"><span class="ph" style="background:#f6e6bf"><svg viewBox="0 0 44 44" aria-hidden="true"><g fill="#e88aa8"><circle cx="22" cy="12" r="6"/><circle cx="32" cy="19" r="6"/><circle cx="28" cy="31" r="6"/><circle cx="16" cy="31" r="6"/><circle cx="12" cy="19" r="6"/></g><circle cx="22" cy="23" r="5" fill="#f6c453"/></svg><img src="foto/tip-kvetiny.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 3</span><b>Kytice a kniha, kterou si přeje</b><span class="tip-d">Osobní pozornost, která nemusí stát majlant.</span><span class="tip-p">od 700 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
+   <div class="mail-foot">Nechceš nic řešit? Odpověz číslem tipu a zařídím to za tebe.</div>
   </div>
  </div>
+</div>
 </section>
 
-<section id="registrace">
- <h2>Pojďme najít dárek, který jí udělá radost</h2>
- <p class="lead" style="margin-bottom:24px">Nejdřív pár základních údajů. Další informace doplníš podle chuti.</p>
- <form id="f" novalidate>
-  <label>Tvůj e-mail<input type="email" name="email" required autocomplete="email" placeholder="např. jan@email.cz"></label>
-  <label>Jak ti máme říkat? (nepovinné)<input name="jmeno" autocomplete="given-name"></label>
-  <fieldset><legend>Pro koho hledáš dárek?</legend>
-   <div class="row">
-    <label>Jméno<input name="o1_jmeno" required placeholder="např. Anežka"></label>
-    <label>Kdo to je?<select name="o1_vztah" required><option value="">Vyber</option>
+<section class="white">
+<div class="wrap">
+ <h2>Jak to funguje</h2>
+ <p class="lead" style="margin-bottom:34px">Tři jednoduché kroky. Žádná práce navíc.</p>
+ <div class="steps">
+  <div class="step">
+   <svg viewBox="0 0 160 110" role="img" aria-label="Kalendář s označeným datem"><rect x="38" y="16" width="84" height="80" rx="10" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M38 38V26a10 10 0 0 1 10-10h64a10 10 0 0 1 10 10v12z" fill="#0f6b6b"/><line x1="58" y1="9" x2="58" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><line x1="102" y1="9" x2="102" y2="23" stroke="#1c2233" stroke-width="4" stroke-linecap="round"/><g fill="#c9ced8"><circle cx="54" cy="52" r="3"/><circle cx="72" cy="52" r="3"/><circle cx="90" cy="52" r="3"/><circle cx="108" cy="52" r="3"/><circle cx="54" cy="68" r="3"/><circle cx="72" cy="68" r="3"/><circle cx="108" cy="68" r="3"/><circle cx="54" cy="84" r="3"/><circle cx="72" cy="84" r="3"/><circle cx="90" cy="84" r="3"/></g><circle cx="90" cy="68" r="10" fill="#c2255c"/><path d="M90 73.5l-4.6-4.4a2.9 2.9 0 0 1 4.6-3.3 2.9 2.9 0 0 1 4.6 3.3z" fill="#fff"/></svg>
+   <div><h3>1. Nastavíš důležité datum</h3><p>Zadáš, komu chceš udělat radost, kdy slaví a co má ráda.</p></div>
+  </div>
+  <div class="step">
+   <svg viewBox="0 0 160 110" role="img" aria-label="Obálka s odznakem 21 dní"><rect x="26" y="34" width="104" height="62" rx="8" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M28 38l50 34 50-34" fill="none" stroke="#1c2233" stroke-width="3" stroke-linejoin="round"/><circle cx="124" cy="32" r="18" fill="#c2255c"/><text x="124" y="33" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">21</text><text x="124" y="44" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="8" font-weight="600" fill="#fff">dní</text></svg>
+   <div><h3>2. Připomenu ti ho včas</h3><p>Tři týdny předem dostaneš e-mail, abys měl čas dárek vybrat i objednat.</p></div>
+  </div>
+  <div class="step">
+   <svg viewBox="0 0 160 110" role="img" aria-label="Tři dárky, prostřední vybraný"><defs><g id="gf"><rect x="-11" y="-2" width="22" height="16" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><rect x="-13" y="-8" width="26" height="7" rx="2" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><line x1="0" y1="-8" x2="0" y2="14" stroke="#c2255c" stroke-width="3"/><path d="M0-8C-8-18-14-8 0-8 14-8 8-18 0-8z" fill="none" stroke="#c2255c" stroke-width="2.5"/></g></defs><rect x="14" y="38" width="38" height="56" rx="8" fill="#fbfaf8" stroke="#c9ced8" stroke-width="2.5"/><rect x="108" y="38" width="38" height="56" rx="8" fill="#fbfaf8" stroke="#c9ced8" stroke-width="2.5"/><rect x="61" y="34" width="38" height="60" rx="8" fill="#e3f2f1" stroke="#0f6b6b" stroke-width="3"/><use href="#gf" x="33" y="66"/><use href="#gf" x="80" y="66"/><use href="#gf" x="127" y="66"/><circle cx="80" cy="34" r="11" fill="#0f6b6b"/><path d="M74.5 34l4 4 7-8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+   <div><h3>3. Vybereš si dárek</h3><p>Dostaneš tři konkrétní tipy. Vybereš si ten pravý, nebo využiješ možnost zařídit dárek s pomocí služby.</p></div>
+  </div>
+ </div>
+</div>
+</section>
+
+<section class="band" id="registrace">
+<div class="wrap formgrid">
+ <div>
+  <h2>Pojďme najít dárek, který jí udělá radost</h2>
+  <p class="lead">Dva krátké kroky. Čím víc o ní napíšeš, tím trefnější tipy dostaneš.</p>
+  <ul class="sidelist">
+   <li><i>1</i><span><b>Základ.</b> E-mail, kde bydlíš, kdo to je a kdy slaví. Zabere to minutu.</span></li>
+   <li><i>2</i><span><b>Co ji potěší.</b> Zájmy, styl, rozpočet. Právě tady vznikají trefné tipy.</span></li>
+  </ul>
+ </div>
+ <div class="formcard" id="formcard">
+  <form id="f" novalidate>
+   <div class="stepper" aria-hidden="true"><span id="s1b" class="on">1 · Základ</span><span id="s2b">2 · Co ji potěší</span></div>
+
+   <div class="panel" id="step1">
+    <label>Tvůj e-mail<input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="např. jan@email.cz"></label>
+    <div class="row">
+     <label>Jak ti máme říkat? (nepovinné)<input name="jmeno" autocomplete="given-name"></label>
+     <label>Kde bydlíš? Nejbližší větší město<input class="keyfield" name="mesto" list="mesta" required autocomplete="address-level2" placeholder="např. Brno"></label>
+    </div>
+    <datalist id="mesta"><option value="Praha"><option value="Brno"><option value="Ostrava"><option value="Plzeň"><option value="Liberec"><option value="Olomouc"><option value="České Budějovice"><option value="Hradec Králové"><option value="Ústí nad Labem"><option value="Pardubice"><option value="Zlín"><option value="Havlíčkův Brod"><option value="Kladno"><option value="Most"><option value="Opava"><option value="Frýdek-Místek"><option value="Karviná"><option value="Jihlava"><option value="Teplice"><option value="Karlovy Vary"><option value="Děčín"><option value="Chomutov"><option value="Přerov"><option value="Jablonec nad Nisou"><option value="Mladá Boleslav"><option value="Prostějov"><option value="Třebíč"><option value="Znojmo"><option value="Třinec"><option value="Tábor"><option value="Příbram"><option value="Cheb"><option value="Kolín"><option value="Trutnov"><option value="Písek"><option value="Kroměříž"><option value="Šumperk"><option value="Vsetín"><option value="Uherské Hradiště"><option value="Hodonín"><option value="Břeclav"><option value="Náchod"><option value="Český Těšín"><option value="Litoměřice"><option value="Krnov"><option value="Sokolov"><option value="Strakonice"><option value="Klatovy"><option value="Benešov"><option value="Beroun"><option value="Mělník"><option value="Chrudim"><option value="Žďár nad Sázavou"><option value="Vyškov"><option value="Blansko"><option value="Nový Jičín"><option value="Valašské Meziříčí"><option value="Domažlice"><option value="Louny"><option value="Jičín"><option value="Pelhřimov"><option value="Rakovník"><option value="Prachatice"><option value="Česká Lípa"><option value="Semily"></datalist>
+    <p class="hint" style="margin-top:-6px">Podle města vyberu tipy, které zvládnete u vás nebo kousek od vás.</p>
+    <div class="grp"><b>Pro koho hledáš dárek?</b>
+     <div class="row">
+      <label>Jméno<input name="o1_jmeno" required placeholder="např. Anežka"></label>
+      <label>Kdo to je?<select name="o1_vztah" required><option value="">Vyber</option>
 <optgroup label="Rodina"><option>manželka / partnerka</option><option>maminka</option><option>tchyně</option><option>dcera</option><option>sestra</option><option>babička</option></optgroup>
 <optgroup label="Ostatní"><option>kamarádka</option><option>kolegyně / obchodní partnerka</option><option>jiné</option></optgroup></select></label>
-    <label>Den<input name="o1_den" type="number" min="1" max="31" required></label>
-    <label>Měsíc<select name="o1_mesic" required><option value="">Měsíc</option><option value="1">leden</option><option value="2">únor</option><option value="3">březen</option><option value="4">duben</option><option value="5">květen</option><option value="6">červen</option><option value="7">červenec</option><option value="8">srpen</option><option value="9">září</option><option value="10">říjen</option><option value="11">listopad</option><option value="12">prosinec</option></select></label>
+     </div>
+     <div class="row dm">
+      <label>Den<input name="o1_den" type="number" inputmode="numeric" min="1" max="31" required></label>
+      <label>Měsíc<select name="o1_mesic" required><option value="">Měsíc</option><option value="1">leden</option><option value="2">únor</option><option value="3">březen</option><option value="4">duben</option><option value="5">květen</option><option value="6">červen</option><option value="7">červenec</option><option value="8">srpen</option><option value="9">září</option><option value="10">říjen</option><option value="11">listopad</option><option value="12">prosinec</option></select></label>
+     </div>
+     <p class="hint">Jméno slouží jen pro tvou orientaci v e-mailech.</p>
+     <div><strong>Jaká příležitost?</strong><div class="chips" style="margin-top:8px"><label><input type="radio" name="o1_typ" value="narozeniny" checked required>narozeniny</label><label><input type="radio" name="o1_typ" value="výročí svatby">výročí svatby</label><label><input type="radio" name="o1_typ" value="výročí vztahu">výročí vztahu</label><label><input type="radio" name="o1_typ" value="svátek">svátek</label><label><input type="radio" name="o1_typ" value="jiná příležitost">jiná příležitost</label></div></div>
+     <label id="jina-wrap" hidden>Jaká příležitost to je?<input name="o1_typ_jina" maxlength="80" placeholder="např. Vánoce, Valentýn, výročí seznámení"></label>
+    </div>
+    <div class="actions"><button class="btn" type="button" id="next">Pokračovat: co ji potěší →</button></div>
+    <p class="small" style="margin:0">Zdarma pro prvních 1 000 členů, až dvě osoby na jeden e-mail.</p>
    </div>
-   <div class="hint" style="margin:0">Jméno slouží jen pro tvou orientaci v e-mailech.</div>
-   <div><strong style="font-size:.95rem">Jaká příležitost?</strong><div class="chips" style="margin-top:8px"><label><input type="radio" name="o1_typ" value="narozeniny" checked required>narozeniny</label><label><input type="radio" name="o1_typ" value="výročí svatby">výročí svatby</label><label><input type="radio" name="o1_typ" value="výročí vztahu">výročí vztahu</label><label><input type="radio" name="o1_typ" value="svátek">svátek</label><label><input type="radio" name="o1_typ" value="jiná příležitost">jiná příležitost</label></div></div>
-   <label id="jina-wrap" hidden>Jaká příležitost to je?<input name="o1_typ_jina" maxlength="80" placeholder="např. Vánoce, Valentýn, výročí seznámení"></label>
-  </fieldset>
-  <details class="more">
-   <summary>Chceš trefnější tipy? Napiš mi o ní víc (nepovinné)</summary>
-   <div class="more-body">
-    <div><strong class="qt">Co ji baví?</strong><div class="hint">Vyber klidně víc možností.</div><div class="pick" tabindex="0" aria-label="Seznam zájmů, posuň a vyber"><div class="chips"><label><input type="checkbox" name="o1_zajmy" value="Cestování">Cestování</label><label><input type="checkbox" name="o1_zajmy" value="Wellness a relax">Wellness a relax</label><label><input type="checkbox" name="o1_zajmy" value="Kultura">Kultura</label><label><input type="checkbox" name="o1_zajmy" value="Divadlo a koncerty">Divadlo a koncerty</label><label><input type="checkbox" name="o1_zajmy" value="Film a seriály">Film a seriály</label><label><input type="checkbox" name="o1_zajmy" value="Knihy">Knihy</label><label><input type="checkbox" name="o1_zajmy" value="Hudba">Hudba</label><label><input type="checkbox" name="o1_zajmy" value="Umění">Umění</label><label><input type="checkbox" name="o1_zajmy" value="Sport">Sport</label><label><input type="checkbox" name="o1_zajmy" value="Outdoor a dobrodružství">Outdoor a dobrodružství</label><label><input type="checkbox" name="o1_zajmy" value="Gastro a víno">Gastro a víno</label><label><input type="checkbox" name="o1_zajmy" value="Vaření a pečení">Vaření a pečení</label><label><input type="checkbox" name="o1_zajmy" value="Káva a čaj">Káva a čaj</label><label><input type="checkbox" name="o1_zajmy" value="Móda a šperky">Móda a šperky</label><label><input type="checkbox" name="o1_zajmy" value="Péče o sebe">Péče o sebe</label><label><input type="checkbox" name="o1_zajmy" value="Domov a design">Domov a design</label><label><input type="checkbox" name="o1_zajmy" value="Příroda a zahrada">Příroda a zahrada</label><label><input type="checkbox" name="o1_zajmy" value="Domácí mazlíčci">Domácí mazlíčci</label><label><input type="checkbox" name="o1_zajmy" value="Technika a gadgety">Technika a gadgety</label><label><input type="checkbox" name="o1_zajmy" value="Auto-moto">Auto-moto</label><label><input type="checkbox" name="o1_zajmy" value="Fotografie">Fotografie</label><label><input type="checkbox" name="o1_zajmy" value="Hry a zábava">Hry a zábava</label><label><input type="checkbox" name="o1_zajmy" value="Rodina a děti">Rodina a děti</label></div></div></div>
+
+   <div class="panel" id="step2" hidden>
+    <div class="boost"><b>Tady vznikají trefné tipy</b><p>Nepovinné, ale nejdůležitější. Každá odpověď navíc znamená konkrétnější dárek místo obecného tipu.</p><div class="meter" aria-hidden="true"><i id="mbar"></i></div><div class="meter-t" id="mtxt">Profil vyplněn z 40 %</div></div>
+    <div><strong class="qt">Co ji baví?</strong><p class="hint" style="margin:2px 0 8px">Vyber klidně víc možností.</p><div class="pick" tabindex="0" aria-label="Seznam zájmů, posuň a vyber"><div class="chips"><label><input type="checkbox" name="o1_zajmy" value="Cestování">Cestování</label><label><input type="checkbox" name="o1_zajmy" value="Wellness a relax">Wellness a relax</label><label><input type="checkbox" name="o1_zajmy" value="Kultura">Kultura</label><label><input type="checkbox" name="o1_zajmy" value="Divadlo a koncerty">Divadlo a koncerty</label><label><input type="checkbox" name="o1_zajmy" value="Film a seriály">Film a seriály</label><label><input type="checkbox" name="o1_zajmy" value="Knihy">Knihy</label><label><input type="checkbox" name="o1_zajmy" value="Hudba">Hudba</label><label><input type="checkbox" name="o1_zajmy" value="Umění">Umění</label><label><input type="checkbox" name="o1_zajmy" value="Sport">Sport</label><label><input type="checkbox" name="o1_zajmy" value="Outdoor a dobrodružství">Outdoor a dobrodružství</label><label><input type="checkbox" name="o1_zajmy" value="Gastro a víno">Gastro a víno</label><label><input type="checkbox" name="o1_zajmy" value="Vaření a pečení">Vaření a pečení</label><label><input type="checkbox" name="o1_zajmy" value="Káva a čaj">Káva a čaj</label><label><input type="checkbox" name="o1_zajmy" value="Móda a šperky">Móda a šperky</label><label><input type="checkbox" name="o1_zajmy" value="Péče o sebe">Péče o sebe</label><label><input type="checkbox" name="o1_zajmy" value="Domov a design">Domov a design</label><label><input type="checkbox" name="o1_zajmy" value="Příroda a zahrada">Příroda a zahrada</label><label><input type="checkbox" name="o1_zajmy" value="Domácí mazlíčci">Domácí mazlíčci</label><label><input type="checkbox" name="o1_zajmy" value="Technika a gadgety">Technika a gadgety</label><label><input type="checkbox" name="o1_zajmy" value="Auto-moto">Auto-moto</label><label><input type="checkbox" name="o1_zajmy" value="Fotografie">Fotografie</label><label><input type="checkbox" name="o1_zajmy" value="Hry a zábava">Hry a zábava</label><label><input type="checkbox" name="o1_zajmy" value="Rodina a děti">Rodina a děti</label></div></div></div>
     <div><strong class="qt">Jaký má styl?</strong><div class="chips" style="margin-top:8px"><label><input type="checkbox" name="o1_styl" value="Minimalistický">Minimalistický</label><label><input type="checkbox" name="o1_styl" value="Elegantní">Elegantní</label><label><input type="checkbox" name="o1_styl" value="Sportovní">Sportovní</label><label><input type="checkbox" name="o1_styl" value="Praktický">Praktický</label><label><input type="checkbox" name="o1_styl" value="Romantický">Romantický</label><label><input type="checkbox" name="o1_styl" value="Výrazný a originální">Výrazný a originální</label><label><input type="checkbox" name="o1_styl" value="Přírodní">Přírodní</label><label><input type="checkbox" name="o1_styl" value="Luxusní">Luxusní</label><label><input type="checkbox" name="o1_styl" value="Humorný">Humorný</label></div></div>
     <div><strong class="qt">Jaký typ dárku by ji potěšil?</strong><div class="chips" style="margin-top:8px"><label><input type="checkbox" name="o1_dar" value="Zážitek">Zážitek</label><label><input type="checkbox" name="o1_dar" value="Wellness nebo relax">Wellness nebo relax</label><label><input type="checkbox" name="o1_dar" value="Výlet nebo pobyt">Výlet nebo pobyt</label><label><input type="checkbox" name="o1_dar" value="Něco osobního na míru">Něco osobního na míru</label><label><input type="checkbox" name="o1_dar" value="Praktická věc">Praktická věc</label><label><input type="checkbox" name="o1_dar" value="Něco hezkého na sebe">Něco hezkého na sebe</label><label><input type="checkbox" name="o1_dar" value="Gastronomický zážitek">Gastronomický zážitek</label><label><input type="checkbox" name="o1_dar" value="Květiny nebo drobnost">Květiny nebo drobnost</label><label><input type="checkbox" name="o1_dar" value="Technologie">Technologie</label><label><input type="checkbox" name="o1_dar" value="Překvapení, nechám se inspirovat">Překvapení, nechám se inspirovat</label></div></div>
     <label>Jaký rozpočet přibližně hledáme?<select name="o1_rozpocet"><option value="">Vyber (nepovinné)</option><option value="do 500 Kč">do 500 Kč</option><option value="500–1 500 Kč">500–1 500 Kč</option><option value="1 500–3 000 Kč">1 500–3 000 Kč</option><option value="3 000 Kč a více">3 000 Kč a více</option><option value="nevím / flexibilní">nevím / flexibilní</option></select></label>
     <label>Kolik let bude nebo kolikáté je výročí?<input name="o1_vek" maxlength="60" placeholder="např. 40 let, 10. výročí svatby"></label>
     <label>Čemu se raději vyhnout?<textarea name="o1_vyhnout" rows="2" maxlength="300" placeholder="Např. nemá ráda parfémy, nenosí šperky, nemá ráda adrenalin"></textarea></label>
     <label>Ještě něco, co bych měla vědět?<textarea name="o1_poznamka" rows="3" maxlength="500" placeholder="Např. její oblíbená značka, co si už dlouho přeje, co už má, kam ráda chodí nebo na co společně vzpomínáte"></textarea></label>
+    <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="check"><input type="checkbox" name="gdpr" required><span>Souhlasím se <a href="zasady.html">zpracováním osobních údajů</a> (včetně města, kde bydlíte) a s tím, že mi budete posílat připomínky. Odhlásit se můžu kdykoli odkazem v e-mailu.</span></label>
+    <div class="actions"><button class="btn" type="submit" id="send">Chci připomínky s tipy zdarma</button><button class="back" type="button" id="back">← Zpět</button></div>
+    <p class="small" style="margin:0">Zdarma pro prvních 1 000 členů, až dvě osoby na jeden e-mail. Na oplátku budu ráda za zpětnou vazbu.</p>
    </div>
-  </details>
-  <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
-  <label class="check"><input type="checkbox" name="gdpr" required><span>Souhlasím se <a href="zasady.html">zpracováním osobních údajů</a> a s tím, že mi budete posílat připomínky. Odhlásit se můžu kdykoli odpovědí STOP.</span></label>
-  <button class="btn" type="submit" style="justify-self:start">Chci připomínky s tipy zdarma</button>
-  <p class="free-note" style="margin:0">Zdarma pro prvních 1 000 členů. Na oplátku budu ráda za zpětnou vazbu.</p>
-  <div id="msg" role="status"></div>
- </form>
+   <div id="msg" role="status"></div>
+  </form>
+
+  <div class="thanks" id="thanks" hidden role="status">
+   <svg viewBox="0 0 160 110" aria-hidden="true"><rect x="26" y="34" width="104" height="62" rx="8" fill="#fbfaf8" stroke="#1c2233" stroke-width="3"/><path d="M28 38l50 34 50-34" fill="none" stroke="#1c2233" stroke-width="3" stroke-linejoin="round"/><circle cx="124" cy="32" r="18" fill="#0f6b6b"/><path d="M116 32l6 6 11-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+   <h3>Hotovo, děkuju!</h3>
+   <p class="muted" id="tmain">Datum mám zapsané. Tři týdny předem ti pošlu e-mail se třemi tipy na dárek.</p>
+   <ol><li>Podívej se i do složky Hromadné nebo Spam a přidej si mě mezi oblíbené.</li><li id="tmore">Zdarma můžeš mít zapsanou ještě jednu osobu.</li></ol>
+   <button class="btn" type="button" id="again">Přidat další osobu</button>
+   <p style="margin:14px 0 0"><a href="#">Zpět na úvod</a></p>
+  </div>
+ </div>
+</div>
 </section>
 
 <section>
- <div class="safe">
-  <h2>Ty ji znáš. Já ti pomůžu s výběrem.</h2>
-  <p class="lead" style="margin-bottom:24px">Čím víc o ní napíšeš, tím trefnější tipy dostaneš. Stačí pár základních informací, zbytek je dobrovolný.</p>
-  <div class="safe-grid">
-   <div class="safe-item">
-    <svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="10" x2="34" y2="10"/><line x1="6" y1="20" x2="34" y2="20"/><line x1="6" y1="30" x2="34" y2="30"/></g><g fill="#fff" stroke="#c2255c" stroke-width="2.5"><circle cx="24" cy="10" r="4"/><circle cx="14" cy="20" r="4"/><circle cx="26" cy="30" r="4"/></g></svg>
-    <h3>Vyplníš jen to, co chceš</h3>
-    <p>Zájmy, oblíbené činnosti, styl nebo věci, které nesnáší. Každý detail pomůže při výběru.</p>
-   </div>
-   <div class="safe-item">
-    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 18v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"/><rect x="8" y="18" width="24" height="17" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><circle cx="20" cy="26" r="2.6" fill="#0f6b6b"/></svg>
-    <h3>Víš, k čemu údaje slouží</h3>
-    <p>Používám je jen k připomínkám a přípravě tipů na dárky. Víc najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p>
-   </div>
-   <div class="safe-item">
-    <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="30" height="22" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><path d="M6.5 11.5l13.5 11 13.5-11" fill="none" stroke="#0f6b6b" stroke-width="2.5" stroke-linejoin="round"/></svg>
-    <h3>E-maily máš pod kontrolou</h3>
-    <p>Odhlásit se můžeš kdykoli odpovědí STOP.</p>
-   </div>
-  </div>
+<div class="wrap">
+ <h2>Ty ji znáš. Já ti pomůžu s výběrem.</h2>
+ <p class="lead" style="margin-bottom:32px">Čím víc o ní napíšeš, tím trefnější tipy dostaneš. Stačí pár základních informací, zbytek je dobrovolný.</p>
+ <div class="trust">
+  <div><svg viewBox="0 0 40 40" aria-hidden="true"><g stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="10" x2="34" y2="10"/><line x1="6" y1="20" x2="34" y2="20"/><line x1="6" y1="30" x2="34" y2="30"/></g><g fill="#fff" stroke="#c2255c" stroke-width="2.5"><circle cx="24" cy="10" r="4"/><circle cx="14" cy="20" r="4"/><circle cx="26" cy="30" r="4"/></g></svg><h3>Vyplníš jen to, co chceš</h3><p>Zájmy, oblíbené činnosti, styl nebo věci, které nesnáší. Každý detail pomůže při výběru.</p></div>
+  <div><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M13 18v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#1c2233" stroke-width="2.5" stroke-linecap="round"/><rect x="8" y="18" width="24" height="17" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><circle cx="20" cy="26" r="2.6" fill="#0f6b6b"/></svg><h3>Víš, k čemu údaje slouží</h3><p>Používám je jen k připomínkám a přípravě tipů na dárky. Víc najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p></div>
+  <div><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="9" width="30" height="22" rx="3" fill="#fff" stroke="#1c2233" stroke-width="2.5"/><path d="M6.5 11.5l13.5 11 13.5-11" fill="none" stroke="#0f6b6b" stroke-width="2.5" stroke-linejoin="round"/></svg><h3>E-maily máš pod kontrolou</h3><p>Odhlásit se můžeš kdykoli odkazem v e-mailu, nebo zrušit účet.</p></div>
  </div>
-</section>
-<section>
- <div class="about">
-  <img src="tereza.jpg" alt="Tereza, zakladatelka služby Nezapomeň" onerror="this.style.display='none'">
-  <div>
-<h2>Ahoj, jsem Tereza</h2>
-<p>Nezapomeň vzniklo v roce 2026 s jednoduchým cílem: <strong>ušetřit mužům čas a starosti s výběrem dárků.</strong> </p> 
-<p>Vím, že ne každého baví vybírat dárky a má na to čas. A nikdo nechce darovat něco, co skončí zapomenuté ve skříni.
-Proto jsem tady já. Připomenu ti důležité datum a pošlu tipy na dárky, které by ji mohly potěšit. Ty si jen vybereš a objednáš.
-Ušetříš čas a ona dostane dárek, který jí udělá radost.</p>
-<p><a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a> · <a href="o-mne.html"><strong>Víc o mně →</strong></a></p>
-<p class="sign">Tereza</p>
-  </div>
- </div>
-</section>
-<footer>© Nezapomeň · <a href="o-mne.html">O mně</a> · <a href="zasady.html">Ochrana osobních údajů</a></footer>
 </div>
+</section>
+
+<section class="white">
+<div class="wrap">
+ <h2 style="margin-bottom:28px">Časté otázky</h2>
+ <div class="faq">
+  <details open><summary>Opravdu je to zdarma?</summary><p>Ano, pro prvních 1 000 členů. Zapsat můžeš až dvě osoby pod jedním e-mailem. Kartu nepotřebuješ. Na oplátku budu ráda za zpětnou vazbu.</p></details>
+  <details><summary>Proč se ptáte, kde bydlím?</summary><p>Aby tipy dávaly smysl. Divadlo, wellness nebo večeře se liší podle místa. Stačí nejbližší větší město, adresu nechci.</p></details>
+  <details><summary>Kdy mi e-mail přijde?</summary><p>Tři týdny před datem, které zadáš. Máš tak čas dárek vybrat, objednat i zařídit.</p></details>
+  <details><summary>Co když nechci nic řešit?</summary><p>Odpověz na e-mail číslem tipu a zařídím to za tebe. Zatím domluvou, bez povinnosti.</p></details>
+  <details><summary>Jak se odhlásím?</summary><p>V každém e-mailu je odkaz „Odhlásit odběr“. Účet můžeš zrušit i na požádání a údaje smažu.</p></details>
+  <details><summary>Co děláte s mými údaji?</summary><p>Používám je jen k připomínkám a přípravě tipů. Podrobnosti najdeš v <a href="zasady.html">zásadách ochrany osobních údajů</a>.</p></details>
+ </div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+ <div class="about" id="aboutbox">
+  <div class="aphoto"><img src="tereza.jpg" alt="Tereza, zakladatelka služby Nezapomeň" onerror="this.parentNode.remove();document.getElementById('aboutbox').classList.add('nophoto')"></div>
+  <div>
+   <h2>Ahoj, jsem Tereza</h2>
+   <p>Nezapomeň vzniklo v roce 2026 s jednoduchým cílem: <strong>ušetřit mužům čas a starosti s výběrem dárků.</strong></p>
+   <p>Vím, že ne každého baví vybírat dárky a má na to čas. A nikdo nechce darovat něco, co skončí zapomenuté ve skříni. Proto jsem tady já. Připomenu ti důležité datum a pošlu tipy na dárky, které by ji mohly potěšit. Ty si jen vybereš a objednáš. Ušetříš čas a ona dostane dárek, který jí udělá radost.</p>
+   <p><a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a> · <a href="o-mne.html"><strong>Víc o mně →</strong></a></p>
+   <p class="sign">Tereza</p>
+  </div>
+ </div>
+</div>
+</section>
+
+<div class="wrap" style="padding-bottom:64px">
+ <div class="final dark">
+  <h2>Letos ho nezapomeneš</h2>
+  <p>Zadáš datum, kde bydlíte a co má ráda. Zbytek ti připomenu a navrhnu.</p>
+  <a class="btn" href="#registrace">Chci připomínky s tipy zdarma</a>
+ </div>
+</div>
+
+<footer>© Nezapomeň · <a href="o-mne.html">O mně</a> · <a href="zasady.html">Ochrana osobních údajů</a></footer>
+
+<div class="floatcta" id="fcta"><a class="btn" href="#registrace">Chci připomínky s tipy zdarma</a></div>
 
 <script src="config.js"></script>
 <script>
-// Vlož adresu webové aplikace z Google Apps Scriptu (viz apps-script.gs)
 const CFG = window.NEZAPOMEN_CONFIG || {};
 const FORM_ENDPOINT = CFG.formEndpoint || "";
 const CONTACT = CFG.email || "";
 if (CONTACT) document.querySelectorAll(".mail-link").forEach(a => { a.href = "mailto:" + CONTACT; a.textContent = CONTACT; });
 const f = document.getElementById('f'), msg = document.getElementById('msg');
+const s1 = document.getElementById('step1'), s2 = document.getElementById('step2');
+const thanks = document.getElementById('thanks');
 const jina = document.getElementById('jina-wrap');
+const MONTHS = ['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
 const toggleJina = () => { const on = f.querySelector('[name=o1_typ]:checked').value === 'jiná příležitost'; jina.hidden = !on; jina.querySelector('input').required = on; if (!on) jina.querySelector('input').value = ''; };
 f.querySelectorAll('[name=o1_typ]').forEach(r => r.addEventListener('change', toggleJina));
 const show = (t, c) => { msg.className = c; msg.textContent = t; };
+
+function go(n){
+  s1.hidden = n !== 1; s2.hidden = n !== 2;
+  document.getElementById('s1b').classList.toggle('on', n === 1);
+  document.getElementById('s2b').classList.toggle('on', n === 2);
+  msg.className = ''; msg.textContent = '';
+  document.getElementById('registrace').scrollIntoView({block:'start'});
+}
+function firstBad(scope){
+  let bad = null;
+  scope.querySelectorAll('input,select,textarea').forEach(el => {
+    el.classList.remove('bad');
+    if (!el.checkValidity()) { el.classList.add('bad'); if (!bad) bad = el; }
+  });
+  return bad;
+}
+f.addEventListener('input', e => e.target.classList && e.target.classList.remove('bad'));
+document.getElementById('next').addEventListener('click', () => {
+  const bad = firstBad(s1);
+  if (bad) { bad.focus(); bad.reportValidity(); return; }
+  go(2); meter();
+});
+document.getElementById('back').addEventListener('click', () => go(1));
+
+function meter(){
+  let done = 0;
+  const filled = n => [...f.querySelectorAll('[name='+n+']')].some(el => el.type === 'checkbox' ? el.checked : el.value.trim() !== '');
+  ['o1_zajmy','o1_styl','o1_dar','o1_rozpocet','o1_vek','o1_vyhnout','o1_poznamka'].forEach(n => { if (filled(n)) done++; });
+  const pct = 40 + Math.round(done / 7 * 60);
+  document.getElementById('mbar').style.width = pct + '%';
+  document.getElementById('mtxt').textContent = 'Profil vyplněn z ' + pct + ' %' + (pct >= 100 ? ' · tipy budou co nejtrefnější' : '');
+}
+s2.addEventListener('input', meter); s2.addEventListener('change', meter);
+
+const fc = document.getElementById('fcta'), reg = document.getElementById('registrace');
+if ('IntersectionObserver' in window) {
+  let heroGone = false, regVisible = false;
+  const upd = () => fc.classList.toggle('show', heroGone && !regVisible);
+  new IntersectionObserver(es => { heroGone = !es[0].isIntersecting; upd(); }).observe(document.querySelector('.hero'));
+  new IntersectionObserver(es => { regVisible = es[0].isIntersecting; upd(); }, {threshold:.05}).observe(reg);
+}
+
+document.getElementById('again').addEventListener('click', () => {
+  thanks.hidden = true; f.hidden = false; go(1);
+});
+
 f.addEventListener('submit', async e => {
   e.preventDefault();
-  if (f.web.value) return; // spamový past
-  if (!f.checkValidity()) { f.reportValidity(); return; }
+  if (f.web.value) return;
+  const bad1 = firstBad(s1);
+  if (bad1) { go(1); bad1.focus(); bad1.reportValidity(); return; }
+  const bad2 = firstBad(s2);
+  if (bad2) { bad2.focus(); bad2.reportValidity(); return; }
   const data = Object.fromEntries(new FormData(f).entries());
   delete data.web;
   if (data.o1_typ === 'jiná příležitost' && data.o1_typ_jina) data.o1_typ = 'jiná příležitost: ' + data.o1_typ_jina;
@@ -202,16 +433,29 @@ f.addEventListener('submit', async e => {
   data.gdpr = f.gdpr.checked ? 'ano' : '';
   data.zdroj = new URLSearchParams(location.search).get('utm_source') || 'primo';
   if (!FORM_ENDPOINT) { show('Formulář zatím není napojený. Vlož adresu do souboru config.js.', 'err'); return; }
-  const btn = f.querySelector('button'); btn.disabled = true;
+  const btn = document.getElementById('send'); btn.disabled = true;
+  let res = null;
   try {
-    // text/plain + no-cors: Apps Script nepodporuje předběžný dotaz (preflight). Odpověď nelze přečíst, úspěch poznáš v tabulce.
-    await fetch(FORM_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)});
-    // vymaž jen údaje o osobě; e-mail, jméno a souhlas zůstanou pro přidání další osoby
-    f.querySelectorAll('[name^="o1_"]').forEach(el => { if (el.type === 'checkbox') el.checked = false; else if (el.type === 'radio') el.checked = (el.value === 'narozeniny'); else el.value = ''; });
-    toggleJina();
-    show('Hotovo, děkuju! Brzy ti napíšu. Podívej se i do složky Promo nebo Spam. Chceš přidat ještě někoho? Vyplň formulář znovu, e-mail už máš vyplněný.', 'ok');
-  } catch { show('Něco se nepovedlo. Zkus to prosím znovu' + (CONTACT ? ', nebo napiš na ' + CONTACT : '') + '.', 'err'); }
+    const r = await fetch(FORM_ENDPOINT, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)});
+    try { res = await r.json(); } catch (_) {}
+  } catch (_) {
+    if (!navigator.onLine) { show('Nejsi připojený k internetu. Zkus to prosím znovu.', 'err'); btn.disabled = false; return; }
+  }
   btn.disabled = false;
+  if (res && res.limit) {
+    show('Zdarma můžeš mít zapsané dvě osoby pod jedním e-mailem. Další osoby budou součástí placeného balíčku.' + (CONTACT ? ' Napiš mi na ' + CONTACT + ' a dám ti vědět, až bude hotový.' : ''), 'err');
+    return;
+  }
+  const den = data.o1_den, mes = MONTHS[(parseInt(data.o1_mesic, 10) || 1) - 1];
+  document.getElementById('tmain').textContent = 'Datum mám zapsané: ' + data.o1_jmeno + ', ' + den + '. ' + mes + '. Tři týdny předem ti pošlu e-mail se třemi tipy na dárek. Tipy z okolí: ' + data.mesto + '.';
+  const more = document.getElementById('tmore'), again = document.getElementById('again');
+  if (res && typeof res.count === 'number' && res.count >= 2) { more.textContent = 'Dvě osoby máš zapsané, to je maximum zdarma.'; again.hidden = true; }
+  else if (res && typeof res.count === 'number') { more.textContent = 'Zdarma můžeš mít zapsanou ještě jednu osobu.'; again.hidden = false; }
+  else { more.textContent = 'Chceš přidat ještě někoho? Zdarma můžeš mít zapsané dvě osoby.'; again.hidden = false; }
+  f.querySelectorAll('[name^="o1_"]').forEach(el => { if (el.type === 'checkbox') el.checked = false; else if (el.type === 'radio') el.checked = (el.value === 'narozeniny'); else el.value = ''; });
+  toggleJina(); meter();
+  f.hidden = true; thanks.hidden = false;
+  document.getElementById('registrace').scrollIntoView({block:'start'});
 });
 </script>
 </body>
