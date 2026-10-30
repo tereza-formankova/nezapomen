@@ -171,7 +171,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 .herodark .logo{color:#fff}
 .herodark .lead{color:#c9d0e0}
 .herodark .small{color:#aab3c7}
-.hl{background:linear-gradient(100deg,#ffd666 0%,#ff8db0 55%,#9be0dc 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hl{color:#ffd666}
 .herophoto{background:radial-gradient(closest-side,rgba(255,255,255,.10),transparent 75%);overflow:visible}
 .herophoto img{border-radius:24px}
 .scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
@@ -188,6 +188,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 .chip{position:absolute;z-index:2;background:rgba(255,255,255,.96);color:#1c2233;border-radius:99px;padding:8px 14px;font-weight:700;font-size:.85rem;box-shadow:0 12px 30px rgba(0,0,0,.28);animation:bob 4.5s ease-in-out infinite}
 .chip.c1{top:10%;left:2%}.chip.c2{top:20%;right:0;animation-delay:-1.5s}.chip.c3{top:48%;left:-2%;animation-delay:-3s}
 .badge{z-index:2;color:#1c2233}
+.herophoto{height:460px;border:1px solid rgba(255,214,102,.5);border-radius:28px;overflow:hidden}.herophoto img{border-radius:0}
 /* pás kategorií */
 .usp-wrap{background:#0f1420;border-top:1px solid rgba(255,255,255,.08)}
 .marquee{background:#0f1420;overflow:hidden;padding:4px 0 26px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -244,9 +245,10 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 
 /* ===== horní lišta ===== */
 [id]{scroll-margin-top:78px}
+.hero{padding-top:40px}
 .nav{position:sticky;top:0;z-index:40;background:rgba(15,20,32,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
 .navin{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:66px;position:relative}
-.nav .logo{color:#fff;font-size:1rem;max-width:20em}
+.nav .logo{color:#fff;font-size:1.5rem;max-width:none}
 #menu{display:flex;align-items:center;gap:4px}
 #menu a{color:#d9deea;text-decoration:none;font-weight:600;font-size:.97rem;padding:10px 14px;border-radius:99px;min-height:44px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
 #menu a:hover{background:rgba(255,255,255,.1);color:#fff}
@@ -261,7 +263,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:900px){
  .navbtn{display:flex}
- .nav .logo{font-size:.85rem;max-width:14em}
+ .nav .logo{font-size:1.3rem}
  #menu{position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:4px;background:rgba(15,20,32,.97);padding:12px 16px 16px;border-bottom:1px solid rgba(255,255,255,.1);display:none}
  #menu.open{display:flex}
  #menu a{padding:14px 16px;font-size:1.05rem;border-radius:12px}
@@ -273,7 +275,7 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 
 <header class="nav">
  <div class="wrap navin">
-  <a class="logo" href="#">Nezapomeň – připomínka narozenin a výročí s tipy na dárky</a>
+  <a class="logo" href="#">Nezapomeň<span class="sr"> – připomínka narozenin a výročí s tipy na dárky</span></a>
   <nav id="menu" aria-label="Hlavní menu"><a class="n-cta" href="#registrace">Najít dárek</a><a href="#jak">Jak to funguje</a><a href="#faq">Časté dotazy</a><a href="o-mne.html">O mně</a></nav>
   <button class="navbtn" id="navbtn" type="button" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span><b class="sr">Menu</b></button>
  </div>
@@ -282,11 +284,11 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
 <div class="wrap">
 <div class="hero">
  <div>
-  <p class="eyebrow" style="color:#ffd666">Dárkový asistent pro muže · tipy na dárky pro ženy</p>
+  <p class="eyebrow" style="color:#ffd666">Připomínky narozenin a výročí s tipy na dárky pro ženy</p>
   <h1>Nemáš čas?<br><span class="hl">Dárek vyberu já.</span></h1>
-  <p class="lead">Vybereš dárek, který ji potěší, aniž bys musel trávit hodiny hledáním. Tři týdny před narozeninami nebo výročím ti pošlu připomínku a 3 tipy podle toho, co má ráda.</p>
+  <p class="lead">Tři týdny před narozeninami nebo výročím ti připomenu důležité datum a pošlu 3 tipy na dárky podle toho, co má ráda. Finální výběr je pak na tobě.</p>
   <a class="btn" href="#registrace">Chci tipy na dárky zdarma</a>
-  <p class="small" style="margin-top:14px">Zdarma pro prvních 200 členů · stačí e-mail · vybíráš ty, bez závazku</p>
+  <p class="small" style="margin-top:14px">Zdarma pro prvních 200 členů · stačí e-mail</p>
  </div>
  <div class="herophoto" aria-hidden="true">
   <div class="scene">
@@ -300,13 +302,8 @@ footer{padding:30px 0 40px;color:var(--mute);font-size:.92rem;border-top:1px sol
     <rect x="136" y="136" width="28" height="124" fill="#c2255c"/>
     <g class="lid"><rect x="50" y="102" width="200" height="42" rx="12" fill="#14867f"/><rect x="136" y="102" width="28" height="42" fill="#e0457b"/><path d="M150 102c-34-48-82-14-40 8 14 6 34 2 40-8z" fill="none" stroke="#ff8db0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M150 102c34-48 82-14 40 8-14 6-34 2-40-8z" fill="none" stroke="#ff8db0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g>
    </svg>
-   <div class="confetti" id="confetti"></div>
   </div>
   <img src="foto/hero.jpg" alt="" onerror="this.remove()">
-  <span class="chip c1">21 dní předem</span>
-  <span class="chip c2">3 tipy na dárek</span>
-  <span class="chip c3">Tipy z Tvého okolí</span>
-  <div class="badge">Anežka: narozeniny za 21 dní + 3 tipy</div>
  </div>
 </div>
 </div>
