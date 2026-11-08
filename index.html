@@ -263,6 +263,12 @@ footer{padding:30px 16px 40px;color:var(--mute);font-size:.92rem;border-top:1px 
 .checks li::before{content:"";width:20px;height:20px;flex:0 0 20px;border-radius:50%;border:2px solid #ffd666;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 @media(max-width:760px){.cta-row{flex-direction:column;align-items:stretch;text-align:center}}
 
+/* ===== formulář: nadpis nad ním, formulář uprostřed ===== */
+.formwrap{max-width:720px}
+.formhead{text-align:center;margin-bottom:28px}
+.formhead .lead{margin:0 auto}
+.formwrap .formcard{margin:0 auto}
+
 /* ===== hlavní nadpis: každá věta na jednom řádku ===== */
 .hero h1 .l{display:block;white-space:nowrap}
 @media(min-width:901px){
@@ -406,7 +412,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
    <div id="tips"><div class="tip"><span class="ph" style="background:#cfe3e1"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 8c5 5 6 12 0 22-6-10-5-17 0-22z" fill="#0f6b6b"/><path d="M11 17c6 1 11 6 11 13-7 0-12-5-11-13z" fill="#3d9a98"/><path d="M33 17c-6 1-11 6-11 13 7 0 12-5 11-13z" fill="#3d9a98"/></svg><img src="img/kategorie/wellness.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 1</span><b>Wellness víkend pro dva</b><span class="tip-d">Společný čas a odpočinek v příjemném hotelu.</span><span class="tip-p">od 4 000 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
    <div class="tip"><span class="ph" style="background:#f1cdd5"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M13 8h18v8a9 9 0 0 1-18 0z" fill="#c2255c"/><path d="M22 25v10M16 36h12" stroke="#c2255c" stroke-width="2.5" stroke-linecap="round"/></svg><img src="img/kategorie/vino.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 2</span><b>Degustace vín ve sklípku</b><span class="tip-d">Odpoledne mezi vinicemi a večeře ve sklípku.</span><span class="tip-p">od 1 500 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div>
    <div class="tip"><span class="ph" style="background:#cfe3e1"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 8c5 5 6 12 0 22-6-10-5-17 0-22z" fill="#0f6b6b"/><path d="M11 17c6 1 11 6 11 13-7 0-12-5-11-13z" fill="#3d9a98"/><path d="M33 17c-6 1-11 6-11 13 7 0 12-5 11-13z" fill="#3d9a98"/></svg><img src="img/kategorie/wellness.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div><span class="tip-n">TIP 3</span><b>Relaxační masáž</b><span class="tip-d">Hodina klidu a rozmazlování jen pro ni.</span><span class="tip-p">od 800 Kč · <span class="tip-l">Zobrazit tip →</span></span></div></div></div>
-   <div class="mail-foot">Sedí ti tipy? Odpověz mi <b>ANO</b> nebo <b>NE</b> a příště je vyberu ještě přesněji.</div>
+   <div class="mail-foot">Nevíš si rady, který vybrat? Odpověz mi na e-mail a pomůžu ti.</div>
   </div>
  </div>
 </div>
@@ -460,17 +466,11 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
 </section>
 
 <section class="band" id="registrace">
-<div class="wrap formgrid">
- <div>
+<div class="wrap formwrap">
+ <div class="formhead">
   <p class="eyebrow">Registrace zdarma</p>
   <h2>Pojďme najít dárek, který jí udělá radost</h2>
   <p class="lead">Dva krátké kroky. První zabere minutu, druhý je dobrovolný, ale právě z něj vznikají trefné tipy.</p>
-  <ul class="sidelist">
-   <li><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span><b>Žádná karta.</b> Stačí e-mail. Prvních 200 členů má vše zdarma.</span></li>
-   <li><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span><b>Až dvě osoby.</b> Třeba partnerka a maminka pod jedním e-mailem.</span></li>
-   <li><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span><b>Jen to podstatné.</b> Žádný newsletter. Píšu jen, když se blíží datum.</span></li>
-   <li><i><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10.5l3 3 7-7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span><b>Kdykoli odejdeš.</b> Odhlášení v každém e-mailu, údaje smažu.</span></li>
-  </ul>
  </div>
  <div class="reveal formcard" id="formcard">
   <form id="f" novalidate>
@@ -529,7 +529,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
    <p class="muted" id="tmain"></p>
    <div class="sum" id="tsum"></div>
    <p class="small">Mrkni i do složky <b>Hromadné</b> nebo <b>Spam</b> a přidej si mě mezi kontakty, ať ti tipy neutečou.</p>
-   <div class="tbtns"><button class="btn ghost" type="button" id="ics">Přidat do kalendáře</button><button class="btn" type="button" id="again">+ Přidat druhou osobu</button></div>
+   <div class="tbtns"><button class="btn" type="button" id="again">+ Přidat druhou osobu</button></div>
    <p class="small" id="tmore" style="margin:14px 0 0"></p>
   </div>
  </div>
@@ -668,7 +668,7 @@ function go(n){
   document.getElementById('s1b').classList.toggle('on', n === 1);
   document.getElementById('s2b').classList.toggle('on', n === 2);
   msg.className = ''; msg.textContent = '';
-  document.getElementById('registrace').scrollIntoView({block:'start'});
+  document.getElementById('formcard').scrollIntoView({block:'start'});
 }
 document.getElementById('next').addEventListener('click', () => { if (checkStep1()) { go(2); meter(); } });
 document.getElementById('back').addEventListener('click', () => go(1));
@@ -738,9 +738,9 @@ f.addEventListener('submit', async e => {
   });
   const count = res && typeof res.count === 'number' ? res.count : null, again = document.getElementById('again'), more = document.getElementById('tmore');
   if (count !== null && count >= 2) { again.hidden = true; more.textContent = 'Dvě osoby máš zapsané, to je maximum zdarma.'; }
-  else { again.hidden = false; more.textContent = 'Zdarma můžeš mít zapsanou ještě jednu osobu, třeba maminku nebo sestru.'; }
+  else { again.hidden = false; more.textContent = 'Zdarma můžeš mít zapsanou ještě jednu osobu.'; }
   f.hidden = true; thanks.hidden = false;
-  document.getElementById('registrace').scrollIntoView({block:'start'});
+  document.getElementById('formcard').scrollIntoView({block:'start'});
   thanks.focus({preventScroll: true});
 });
 
@@ -754,23 +754,6 @@ document.getElementById('again').addEventListener('click', () => {
   setTimeout(() => f.o1_jmeno.focus({preventScroll: true}), 300);
 });
 
-// Kalendář: událost se opakuje každý rok, upozornění týden předem
-document.getElementById('ics').addEventListener('click', () => {
-  if (!last) return;
-  const when = nextDate(last.d, last.m), end = new Date(when); end.setDate(end.getDate() + 1);
-  const p = n => String(n).padStart(2, '0'), ymd = x => x.getFullYear() + p(x.getMonth() + 1) + p(x.getDate());
-  const esc = s => String(s).replace(/[\\;,]/g, c => '\\' + c), title = esc(last.name + ': ' + last.typ);
-  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Nezapomen//CZ','BEGIN:VEVENT',
-    'UID:' + Date.now() + '@nezapomen.cz', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
-    'DTSTART;VALUE=DATE:' + ymd(when), 'DTEND;VALUE=DATE:' + ymd(end), 'RRULE:FREQ=YEARLY', 'SUMMARY:' + title,
-    'DESCRIPTION:' + esc('Tipy na dárek ti pošle Nezapomeň 21 dní předem.'), 'TRANSP:TRANSPARENT',
-    'BEGIN:VALARM','TRIGGER:-P7D','ACTION:DISPLAY','DESCRIPTION:' + title + ' za týden','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([ics], {type: 'text/calendar;charset=utf-8'}));
-  a.download = 'nezapomen-' + last.name.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.ics';
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-});
 
 // ===== pohyb a interakce =====
 document.documentElement.classList.add('js');
