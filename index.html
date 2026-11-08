@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nezapomeň – připomínka narozenin a výročí s tipy na dárky</title>
-<meta name="description" content="Nezapomeň ti 3 týdny předem připomene narozeniny, svátek nebo výročí a pošle 3 tipy na dárek pro ni. Zdarma pro prvních 200 členů.">
-<meta property="og:title" content="Nezapomeň – připomínka narozenin a výročí s tipy na dárky">
+<title>Tipy na dárky pro ženy a připomínky důležitých dat | Nezapomeň</title>
+<meta name="description" content="Tipy na dárky pro ženy a připomínky důležitých dat. Nezapomeň ti 3 týdny předem připomene narozeniny, svátek nebo výročí a pošle 3 tipy na dárek pro ni. Zdarma pro prvních 200 členů.">
+<meta property="og:title" content="Tipy na dárky pro ženy a připomínky důležitých dat | Nezapomeň">
 <meta property="og:description" content="Dárkový asistent pro muže, který spojuje připomínky důležitých dat s inspirací na dárky pro ženy. Zdarma pro prvních 200 členů.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="cs_CZ">
@@ -263,6 +263,14 @@ footer{padding:30px 16px 40px;color:var(--mute);font-size:.92rem;border-top:1px 
 .checks li::before{content:"";width:20px;height:20px;flex:0 0 20px;border-radius:50%;border:2px solid #ffd666;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 @media(max-width:760px){.cta-row{flex-direction:column;align-items:stretch;text-align:center}}
 
+/* ===== hlavní nadpis: každá věta na jednom řádku ===== */
+.hero h1 .l{display:block;white-space:nowrap}
+@media(min-width:901px){
+ .hero{grid-template-columns:1.55fr 1fr}
+ .hero h1{font-size:clamp(2.2rem,calc(5.7vw - 6px),3.75rem)}
+}
+@media(max-width:900px){.hero h1{font-size:min(3.75rem,calc((100vw - 32px)/10.6))}}
+
 /* ===== časová osa ===== */
 .timeline{list-style:none;margin:44px 0 0;padding:30px 24px 26px;border:1px solid var(--line);border-radius:22px;background:var(--paper);display:grid;grid-template-columns:repeat(4,1fr);position:relative}
 .timeline::before{content:"";position:absolute;top:37px;left:calc(24px + (100% - 48px)/8);right:calc(24px + (100% - 48px)/8);height:8px;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--ribbon))}
@@ -337,12 +345,14 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
  #menu a.n-cta{margin:8px 0 0;justify-content:center}
 }
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Nezapomeň","url":"https://tereza-formankova.github.io/nezapomen/","inLanguage":"cs","description":"Tipy na dárky pro ženy a připomínky důležitých dat: narozenin, svátků a výročí."},{"@type":"Service","name":"Nezapomeň – tipy na dárky pro ženy a připomínky důležitých dat","serviceType":"Připomínky důležitých dat a tipy na dárky","provider":{"@type":"Person","name":"Tereza","email":"tereza@nezapomen.cz"},"areaServed":{"@type":"Country","name":"Česko"},"audience":{"@type":"PeopleAudience","suggestedGender":"male"},"description":"Tři týdny před narozeninami, svátkem nebo výročím pošle e-mail se třemi tipy na dárek pro ni podle jejích zájmů, rozpočtu a lokality. Dárek si člověk objedná sám u prodejce.","offers":{"@type":"Offer","price":"0","priceCurrency":"CZK","description":"Zdarma pro prvních 200 členů, až dvě osoby na jeden e-mail."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Pro koho je Nezapomeň?","acceptedAnswer":{"@type":"Answer","text":"Pro muže, kteří chtějí udělat radost ženě ve svém životě: partnerce, manželce, mamince, dceři, sestře nebo kamarádce. Tipy jsou proto vybírané pro ženy. Pokud bude zájem i z druhé strany, službu rozšířím."}},{"@type":"Question","name":"Opravdu je to zdarma? Kde je háček?","acceptedAnswer":{"@type":"Answer","text":"Pro prvních 200 členů zdarma, bez karty a bez závazku. Některé odkazy na e-shopy mohou být affiliate: když přes ně nakoupíš, dostanu malou provizi a tebe to nestojí nic navíc. Tipy ale vybírám podle ní, ne podle provize."}},{"@type":"Question","name":"Kdy mi e-mail přijde?","acceptedAnswer":{"@type":"Answer","text":"21 dní před datem, které zadáš. Stihneš vybrat, objednat i nechat doručit. Připomínka chodí každý rok znovu, dokud se neodhlásíš."}},{"@type":"Question","name":"Co když slaví už za pár dní?","acceptedAnswer":{"@type":"Answer","text":"I tak ti tipy pošlu, a to co nejdřív po registraci. Vyberu pak dárky, které se dají stihnout: poukaz, vstupenky, zážitek nebo něco s rychlým doručením."}},{"@type":"Question","name":"Proč se ptáš, kde bydlím?","acceptedAnswer":{"@type":"Answer","text":"Aby tipy dávaly smysl. Wellness, divadlo nebo degustace se liší podle místa. Stačí nejbližší větší město, adresu nechci."}},{"@type":"Question","name":"Můžeš dárek zařídit za mě?","acceptedAnswer":{"@type":"Answer","text":"Zatím ne. Dárek si objednáš sám přímo u prodejce, já ti pomůžu s výběrem a připomenu ti ho včas. Nákup, zabalení a doručení za tebe zvažuji jako možnost do budoucna. Pokud by se ti hodila, zaškrtni ve formuláři „Zařídit dárek za mě“ a dám ti vědět, až bude hotová."}},{"@type":"Question","name":"Můžu mít víc osob nebo víc tipů?","acceptedAnswer":{"@type":"Answer","text":"Zdarma jsou dvě osoby na jeden e-mail. Připravuji rozšířené členství s více osobami a více tipy. Zaškrtni ve formuláři, co by se ti hodilo, a dám ti vědět mezi prvními."}},{"@type":"Question","name":"Jak se odhlásím?","acceptedAnswer":{"@type":"Answer","text":"Odkazem „Odhlásit odběr“ v každém e-mailu, nebo na stránce odhlášení. Údaje pak smažu."}}]}</script>
 </head>
 <body>
 
 <header class="nav">
  <div class="wrap navin">
-  <a class="logo" href="#">Nezapomeň<span class="sr"> – připomínka narozenin a výročí s tipy na dárky</span></a>
+  <a class="logo" href="#">Nezapomeň<span class="sr"> – tipy na dárky pro ženy a připomínky důležitých dat</span></a>
   <nav id="menu" aria-label="Hlavní menu"><a href="#ukazka">Ukázka tipů</a><a href="#jak">Jak to funguje</a><a href="#faq">Časté dotazy</a><a href="o-mne.html">O mně</a><a class="n-cta" href="#registrace">Chci připomínku zdarma</a></nav>
   <button class="navbtn" id="navbtn" type="button" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span><b class="sr">Menu</b></button>
  </div>
@@ -351,9 +361,9 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
 <div class="wrap">
 <div class="hero">
  <div>
-  <p class="eyebrow" style="color:#ffd666">Dárkový asistent pro muže</p>
-  <h1>Její den ti pohlídám. <em class="hl">S&nbsp;dárkem pomůžu.</em></h1>
-  <p class="lead">Tři týdny před narozeninami, svátkem nebo výročím ti pošlu e-mail se třemi tipy na dárek podle toho, co ji baví a kde bydlíte. Ty si jen vybereš.</p>
+  <p class="eyebrow" style="color:#ffd666"><span style="white-space:nowrap">Dárkový asistent pro muže ·</span> <span style="white-space:nowrap">Tipy na dárky pro ženy</span></p>
+  <h1><span class="l">Její den ti pohlídám.</span> <em class="hl l">S&nbsp;dárkem pomůžu.</em></h1>
+  <p class="lead">Tři týdny před narozeninami, svátkem nebo výročím ti pošlu e-mail se třemi tipy na dárek podle jejích zájmů a vaší lokality. Ty si vybereš, čím ji potěšíš.</p>
   <div class="cta-row"><a class="btn" href="#registrace">Chci připomínku zdarma →</a><a class="tlink" href="#ukazka">Jak vypadají tipy?</a></div>
   <ul class="checks"><li>Zdarma pro prvních 200 členů</li><li>Stačí e-mail, žádná karta</li><li>Odhlášení jedním klikem</li></ul>
  </div>
@@ -561,7 +571,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
  </div>
 </div>
 
-<footer><p class="foot-desc"><b>Nezapomeň</b><br>Připomínky důležitých dat s tipy na dárky pro ni.<br>© <span id="year">2026</span> Nezapomeň</p><nav aria-label="Patička"><a href="o-mne.html">O mně</a><a href="zasady.html">Ochrana osobních údajů</a><a href="odhlaseni.html">Odhlášení</a><a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a></nav></footer>
+<footer><p class="foot-desc"><b>Nezapomeň</b><br>Tipy na dárky pro ženy a připomínky důležitých dat.<br>© <span id="year">2026</span> Nezapomeň</p><nav aria-label="Patička"><a href="o-mne.html">O mně</a><a href="zasady.html">Ochrana osobních údajů</a><a href="odhlaseni.html">Odhlášení</a><a class="mail-link" href="mailto:tereza@nezapomen.cz">tereza@nezapomen.cz</a></nav></footer>
 
 <div class="floatcta" id="fcta"><a class="btn" href="#registrace">Chci připomínku zdarma →</a></div>
 
