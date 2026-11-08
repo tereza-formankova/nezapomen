@@ -384,7 +384,7 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
   <p class="lead">Vyber, co ji baví, a podívej se, jak by vypadal e-mail. Skutečné tipy pak vybírám podle všeho, co o ní napíšeš.</p>
   <div class="picks" id="picks" role="group" aria-label="Co ji baví"><button type="button" class="pk on" data-k="wellness" aria-pressed="true">Wellness a relax</button><button type="button" class="pk" data-k="gastro" aria-pressed="false">Gastro a víno</button><button type="button" class="pk" data-k="kultura" aria-pressed="false">Kultura</button><button type="button" class="pk" data-k="cestovani" aria-pressed="false">Cestování</button><button type="button" class="pk" data-k="pece" aria-pressed="false">Péče o sebe</button><button type="button" class="pk" data-k="dobrodruzstvi" aria-pressed="false">Dobrodružství</button></div>
   <div class="dsel">
-   <label>Kde bydlíte<select id="dCity"><option>Praha</option><option selected>Brno</option><option>Ostrava</option><option>Plzeň</option><option>Olomouc</option><option>České Budějovice</option></select></label>
+   <label>Kde bydlíte<select id="dCity"><option>Praha</option><option selected>Brno</option><option>Ostrava</option><option>Plzeň</option><option>Liberec</option><option>Olomouc</option><option>České Budějovice</option><option>Hradec Králové</option><option>Ústí nad Labem</option><option>Pardubice</option><option>Zlín</option><option>Karlovy Vary</option><option>Jihlava</option></select></label>
    <label>Rozpočet<select id="dBudget"><option value="1">do 1 500 Kč</option><option value="2" selected>1 500–3 000 Kč</option><option value="3">3 000 Kč a více</option></select></label>
   </div>
   <p class="small">Ukázka je orientační. Ceny a nabídka se liší podle místa a termínu.</p>
@@ -471,9 +471,8 @@ footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;margi
      <label>Tvůj e-mail<input type="email" id="email" name="email" required autocomplete="email" inputmode="email" placeholder="jan@email.cz"></label>
      <label>Jak ti mám říkat? <span class="hint" style="display:inline">(nepovinné)</span><input id="jmeno" name="jmeno" autocomplete="given-name" maxlength="60" placeholder="Honza"></label>
     </div>
-    <label>Kde bydlíš? <span class="hint" style="display:inline">Nejbližší větší město</span><input class="keyfield" id="mesto" name="mesto" list="mesta" required autocomplete="off" maxlength="60" placeholder="Začni psát, např. Brno"></label>
-    <datalist id="mesta"></datalist>
-    <p class="hint" style="margin-top:-8px">Podle města vyberu tipy, které zvládnete u vás nebo kousek od vás.</p>
+    <label>Kde bydlíš? <span class="hint" style="display:inline">Nejbližší větší město</span><select class="keyfield" id="mesto" name="mesto" required><option value="">Vyber město</option></select></label>
+    <p class="hint" style="margin-top:-8px">Bydlíš v menším městě? Vyber nejbližší z nabídky. Podle něj vyberu tipy, které zvládnete u vás nebo kousek od vás.</p>
 
     <div class="grp">
      <div class="row">
@@ -582,13 +581,14 @@ const jina = document.getElementById('jina-wrap');
 const MONTHS = ['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
 
 // Hodnoty formuláře (stejné jako v listu Hodnoty a v apps-script.gs)
-const CITIES = ['Praha','Brno','Ostrava','Plzeň','Liberec','Olomouc','České Budějovice','Hradec Králové','Ústí nad Labem','Pardubice','Zlín','Havlíčkův Brod','Kladno','Most','Opava','Frýdek-Místek','Karviná','Jihlava','Teplice','Karlovy Vary','Děčín','Chomutov','Přerov','Jablonec nad Nisou','Mladá Boleslav','Prostějov','Třebíč','Znojmo','Třinec','Tábor','Příbram','Cheb','Kolín','Trutnov','Písek','Kroměříž','Šumperk','Vsetín','Uherské Hradiště','Hodonín','Břeclav','Náchod','Český Těšín','Litoměřice','Krnov','Sokolov','Strakonice','Klatovy','Benešov','Beroun','Mělník','Chrudim','Žďár nad Sázavou','Vyškov','Blansko','Nový Jičín','Valašské Meziříčí','Domažlice','Louny','Jičín','Pelhřimov','Rakovník','Prachatice','Česká Lípa','Semily'];
+// Pevný seznam: 13 krajských měst. Stejný je v ukázce tipů, v apps-script.gs a na listu Města.
+const CITIES = ['Praha','Brno','Ostrava','Plzeň','Liberec','Olomouc','České Budějovice','Hradec Králové','Ústí nad Labem','Pardubice','Zlín','Karlovy Vary','Jihlava'];
 const GROUPS = {
   o1_zajmy: ['Cestování','Wellness a relax','Kultura','Divadlo a koncerty','Film a seriály','Knihy','Hudba','Umění','Sport','Outdoor a dobrodružství','Gastro a víno','Vaření a pečení','Káva a čaj','Móda a šperky','Péče o sebe','Domov a design','Příroda a zahrada','Domácí mazlíčci','Technika a gadgety','Auto-moto','Fotografie','Hry a zábava','Rodina a děti'],
   o1_dar: ['Zážitek','Wellness nebo relax','Výlet nebo pobyt','Něco osobního na míru','Praktická věc','Něco hezkého na sebe','Gastronomický zážitek','Květiny nebo drobnost','Technologie','Překvapení, nechám se inspirovat'],
   o1_styl: ['Minimalistický','Elegantní','Sportovní','Praktický','Romantický','Výrazný a originální','Přírodní','Luxusní','Humorný']
 };
-document.getElementById('mesta').innerHTML = CITIES.map(c => '<option value="' + c + '">').join('');
+f.mesto.insertAdjacentHTML('beforeend', CITIES.map(c => '<option>' + c + '</option>').join(''));
 $$('[data-group]').forEach(box => { const n = box.dataset.group; box.innerHTML = GROUPS[n].map(v => '<label><input type="checkbox" name="' + n + '" value="' + v + '">' + v + '</label>').join(''); });
 
 // Příležitost: pole "jiná" a popisek věku
@@ -641,7 +641,7 @@ function checkStep1() {
   const bad = (el, t) => { setErr(el, t); first = first || el; };
   $$('input,select', s1).forEach(el => el.id && clearErr(el));
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.value.trim())) bad(f.email, 'Zadej prosím platný e-mail, třeba jan@email.cz.');
-  if (!f.mesto.value.trim()) bad(f.mesto, 'Napiš nejbližší větší město.');
+  if (!f.mesto.value.trim()) bad(f.mesto, 'Vyber nejbližší větší město.');
   if (!f.o1_jmeno.value.trim()) bad(f.o1_jmeno, 'Jak se jmenuje? Stačí křestní jméno nebo přezdívka.');
   if (!f.o1_vztah.value) bad(f.o1_vztah, 'Vyber, kdo to je.');
   if (typNow() === 'jiná příležitost' && !f.o1_typ_jina.value.trim()) bad(f.o1_typ_jina, 'Napiš, o jakou příležitost jde.');
@@ -827,7 +827,14 @@ const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').m
     'Ostrava':         {v:'v Ostravě', hory:'v Beskydech', balon:'Let balonem', k:1, hrad:'Výlet na hrad Hukvaldy', lazne:'Lázeňský den v Klimkovicích', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Divadla Antonína Dvořáka', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Beskydech', reka:'Sjíždění Bečvy na kánoi', cesta:['Prodloužený víkend v Krakově','Dvě noci, snídaně a výlet do solného dolu Wieliczka.']},
     'Plzeň':           {v:'v Plzni', hory:'na Šumavě', balon:'Let balonem', k:1, hrad:'Výlet na hrad Švihov', lazne:'Lázeňský den v Mariánských Lázních', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Divadla J. K. Tyla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'na Šumavě', reka:'Sjíždění Berounky na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']},
     'Olomouc':         {v:'v Olomouci', hory:'v Jeseníkách', balon:'Let balonem', k:1, hrad:'Výlet na hrad Bouzov', lazne:'Lázeňský den v Teplicích nad Bečvou', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Moravského divadla', muzikal:['Muzikál v Městském divadle Brno s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Jeseníkách', reka:'Sjíždění Moravy na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']},
-    'České Budějovice':{v:'v Českých Budějovicích', hory:'na Šumavě', balon:'Let balonem nad Českým Krumlovem', k:1, hrad:'Výlet na zámek Hluboká', lazne:'Lázeňský den v Třeboni', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Jihočeského divadla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'na Šumavě', reka:'Sjíždění Vltavy na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']}
+    'České Budějovice':{v:'v Českých Budějovicích', hory:'na Šumavě', balon:'Let balonem nad Českým Krumlovem', k:1, hrad:'Výlet na zámek Hluboká', lazne:'Lázeňský den v Třeboni', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Jihočeského divadla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'na Šumavě', reka:'Sjíždění Vltavy na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']},
+    'Liberec': {v:'v Liberci', hory:'v Jizerských horách', balon:'Let balonem', k:1, hrad:'Výlet na zámek Sychrov', lazne:'Lázeňský den v Lázních Libverda', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Divadla F. X. Šaldy', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Jizerských horách', reka:'Sjíždění Jizery na kánoi', cesta:['Prodloužený víkend v Drážďanech','Dvě noci, snídaně a vstupenka do Semperovy opery.']},
+    'Hradec Králové': {v:'v Hradci Králové', hory:'v Krkonoších', balon:'Let balonem', k:1, hrad:'Výlet na zámek Opočno', lazne:'Lázeňský den v Lázních Bělohrad', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Klicperova divadla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Orlických horách', reka:'Sjíždění Orlice na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']},
+    'Ústí nad Labem': {v:'v Ústí nad Labem', hory:'v Krušných horách', balon:'Let balonem', k:1, hrad:'Výlet na hrad Střekov', lazne:'Lázeňský den v Teplicích', vino:'Degustace vín z Litoměřicka', divadlo:'Vstupenky do Severočeského divadla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Českém Švýcarsku', reka:'Sjíždění Ohře na kánoi', cesta:['Prodloužený víkend v Drážďanech','Dvě noci, snídaně a vstupenka do Semperovy opery.']},
+    'Pardubice': {v:'v Pardubicích', hory:'v Orlických horách', balon:'Let balonem', k:1, hrad:'Výlet na hrad Kunětická hora', lazne:'Lázeňský den v Lázních Bohdaneč', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Východočeského divadla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Železných horách', reka:'Sjíždění Orlice na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']},
+    'Zlín': {v:'ve Zlíně', hory:'v Beskydech', balon:'Let balonem', k:1, hrad:'Výlet na hrad Buchlov', lazne:'Lázeňský den v Luhačovicích', vino:'Degustace ve sklípku na Slovácku', divadlo:'Vstupenky do Městského divadla Zlín', muzikal:['Muzikál v Městském divadle Brno s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Beskydech', reka:'Sjíždění Bečvy na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']},
+    'Karlovy Vary': {v:'v Karlových Varech', hory:'v Krušných horách', balon:'Let balonem', k:1, hrad:'Výlet na hrad Loket', lazne:'Lázeňský den v Karlových Varech', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Karlovarského městského divadla', muzikal:['Muzikálový večer v Praze s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'v Krušných horách', reka:'Sjíždění Ohře na kánoi', cesta:['Prodloužený víkend v Drážďanech','Dvě noci, snídaně a vstupenka do Semperovy opery.']},
+    'Jihlava': {v:'v Jihlavě', hory:'na Vysočině', balon:'Let balonem', k:1, hrad:'Výlet na hrad Roštejn', lazne:'Lázeňský den v Třeboni', vino:'Degustace moravských vín ve vinotéce', divadlo:'Vstupenky do Horáckého divadla', muzikal:['Muzikál v Městském divadle Brno s nocí v hotelu','Dobrá místa, hotel v centru a snídaně.'], glamping:'na Vysočině', reka:'Sjíždění Sázavy na kánoi', cesta:['Prodloužený víkend ve Vídni','Dvě noci, snídaně a vstupenka do opery.']}
   };
   // Tipy: [název, proč se hodí, cena od pro dva, ikona, fotka, 'd' = doručení domů (cena nezávisí na městě)]
   // Každá kategorie má 3 tipy pro každé pásmo: 1 = do 1 500 Kč, 2 = 1 500–3 000 Kč, 3 = 3 000 Kč a více.
